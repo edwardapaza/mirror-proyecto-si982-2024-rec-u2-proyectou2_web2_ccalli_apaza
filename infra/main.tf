@@ -8,20 +8,20 @@ terraform {
   required_version = ">= 0.14.9"
 }
 
-variable "subscription_id" {
+variable "suscription_id" {
   type        = string
   description = "452059b4-1dbe-460c-9ef6-85738d616b22"
 }
 
 provider "azurerm" {
   features {}
-  subscription_id = var.subscription_id
+  subscription_id = var.suscription_id
 }
 
 # Crear el grupo de recursos
 resource "azurerm_resource_group" "rg" {
   name     = "upt-arg-app"
-  location = "Central US"
+  location = "centralus"
 }
 
 # Crear el Plan de Servicio de Aplicación

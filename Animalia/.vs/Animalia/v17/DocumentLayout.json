@@ -1,12 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Edward\\Downloads\\Animalia\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Edward\\Desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\animalia\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Edward\\Desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Views\\Login\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Login\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Edward\\Desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Views\\Login\\Index.cshtml",
+              "RelativeToolTip": "Views\\Login\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T21:38:46.564Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
