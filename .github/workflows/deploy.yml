@@ -29,13 +29,16 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restaurar dependencias
-        run: dotnet restore Animalia/Animalia.sln  # Especifica la solución
+        run: dotnet restore Animalia/Animalia.sln
 
       - name: Compilar la aplicación
-        run: dotnet build Animalia/Animalia.sln --configuration Release --no-restore  # Usa el archivo de solución
+        run: dotnet build Animalia/Animalia.sln --configuration Release --no-restore
 
       - name: Ejecutar pruebas
-        run: dotnet test Animalia/Animalia.sln --configuration Release --no-restore  # Usa el archivo de solución
+        run: dotnet test Animalia/Animalia.sln --configuration Release --no-restore
+
+      - name: Publicar la aplicación
+        run: dotnet publish Animalia/Animalia.sln --configuration Release --output Animalia/bin/Release/net8.0/publish
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,4 +49,5 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: "Animalia/bin/Release/net8.0/publish"  # Asegúrate de que el paquete de despliegue esté en la carpeta correcta
+          package: "Animalia/bin/Release/net8.0/publish"
+          slot-name: production
