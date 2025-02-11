@@ -1,0 +1,97 @@
+﻿@{
+    Layout = null; // Evita que use el layout principal
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap" />
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        .left {
+            width: 50%;
+            background-color: #b5d6cb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .left img {
+                max-width: 50%;
+            }
+
+        .right {
+            width: 50%;
+            background-color: #ecf3f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #002147;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid gray;
+            border-radius: 5px;
+            background-color: #d3d3d3;
+        }
+
+        .forgot-password {
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #d3d3d3;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #002147;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="left">
+        <img src="~/Assets/login.png" alt="Logo">
+    </div>
+    <div class="right">
+        <h1>Bienvenido</h1>
+        <div class="form-container">
+            <form method="post" action="/Login/Login">
+                <input type="text" name="nombreUsuario" placeholder="Usuario" required>
+                <input type="password" name="contrasena" placeholder="Contraseña" required>
+                <div class="forgot-password">¿Olvidaste tu contraseña?</div>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+﻿@model List<Animalia.Models.vw_ConsultasNotificaciones>
+@{
+    ViewData["Title"] = "Lista de Consultas para Notificaciones";
+}
+
+<div class="container mt-4">
+    <div class="title-section mb-3">
+        <h2>Consultas Agendadas - Notificaciones</h2>
+    </div>
+
+    <div class="content-area">
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <h4>Consultas Pendientes</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Mascota</th>
+                    <th>Tutor</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Veterinario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var consulta in Model)
+                {
+                    <tr>
+                        <td>@consulta.NombreMascota</td>
+                        <td>@consulta.NombreCliente</td>
+                        <td>@consulta.Fecha.ToShortDateString()</td>
+                        <td>@consulta.Hora</td>
+                        <td>@consulta.NombreVeterinario</td>
+                        <td>
+                            @if (consulta.CanSendNotification == 1)
+                            {
+                                <form method="post" asp-action="SendNotification" asp-route-idConsulta="@consulta.IdConsulta">
+                                    <button type="submit" class="btn btn-primary btn-sm">Enviar Notificación</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <button class="btn btn-secondary btn-sm" disabled>Fecha Pasada</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .title-section {
+        display: flex;
+        background-color: #65a8c2;
+        padding: 15px;
+        text-align: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .content-area {
+        background-color: #b5d6cb;
+        padding: 30px;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // No se necesita Javascript AJAX ahora.
+    </script>
+}

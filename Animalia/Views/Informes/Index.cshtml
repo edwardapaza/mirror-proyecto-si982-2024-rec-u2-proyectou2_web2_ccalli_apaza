@@ -1,0 +1,123 @@
+﻿@model List<Animalia.Models.Consulta>
+@{
+    ViewData["Title"] = "Informes de Diagnósticos";
+}
+
+<div class="container mt-4">
+    <div class="title-section mb-3">
+        <h2>Informes de Diagnósticos</h2>
+    </div>
+
+    <div class="content-area">
+        <h4>Listado de Consultas y Diagnósticos</h4>
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th>ID Consulta</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Mascota</th>
+                    <th>Cliente</th>
+                    <th>Diagnóstico General</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var consulta in Model)
+                    {
+                        <tr>
+                            <td>@consulta.IdConsulta</td>
+                            <td>@consulta.Fecha.ToShortDateString()</td>
+                            <td>@consulta.Hora</td>
+                            <td>@consulta.Mascota.Nombre</td>
+                            <td>@consulta.Mascota.Cliente.Nombre</td>
+                            <td>
+                                @if (consulta.Diagnostico != null)
+                                {
+                                    <a asp-controller="Informes" asp-action="GenerarPdfDiagnostico" asp-route-idConsulta="@consulta.IdConsulta" class="btn btn-sm btn-secondary mt-2">Generar PDF</a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Sin diagnóstico</span>
+                                    <br />
+                                    <a asp-controller="Informes" asp-action="CreateDiagnostico" asp-route-idConsulta="@consulta.IdConsulta" class="btn btn-sm btn-primary mt-2">Agregar Diagnóstico</a>
+                                }
+                            </td>
+                            <td>
+                                @* Aquí podrías agregar más acciones si es necesario *@
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">No hay consultas registradas.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    /* Styles - same as before */
+    .title-section {
+        display: flex;
+        background-color: #65a8c2;
+        padding: 15px;
+        text-align: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .content-area {
+        background-color: #b5d6cb;
+        padding: 30px;
+    }
+
+    h4 {
+        color: #002147;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        color: #002147;
+    }
+
+    .table-light th {
+        background-color: #ecf3f4; /* Color de fondo navbar */
+        color: #002147;
+    }
+
+    .table-bordered, .table-bordered th, .table-bordered td {
+        border: 1px solid #002147; /* Color de borde consistente con el texto */
+    }
+
+    .btn-primary {
+        background-color: #65a8c2;
+        border: none;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+    }
+
+    .btn-sm {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+
+    .mt-2 {
+        margin-top: 0.5rem !important;
+    }
+</style>

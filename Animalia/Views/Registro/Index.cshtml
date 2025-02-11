@@ -1,0 +1,249 @@
+﻿@{
+    ViewData["Title"] = "Registro Cliente";
+    var clientes = ViewBag.Clientes as List<Animalia.Models.Cliente>;
+}
+
+<div class="container mt-4">
+    <!-- Título -->
+    <div class="title-section mb-3">
+        <h2>Registro Cliente</h2>
+    </div>
+
+    <div class="row-content">
+        <!-- Menú lateral -->
+        <div class="col-md-3 sidebar">
+            <h3>Registro</h3>
+            <ul>
+                <li><a href="#" onclick="showForm('cliente')">Cliente</a></li>
+                <li><a href="#" onclick="showForm('mascota')">Mascota</a></li>
+                <li><a href="#" onclick="showForm('busqueda')">Buscar</a></li>
+            </ul>
+        </div>
+
+        <!-- Contenido dinámico con espacio correcto -->
+        <div class="col-md-9 content-area">
+            <div class="form-wrapper">
+                <div id="cliente-form" class="form-container gap-2" style="display: none;">
+                    <h4>Complete los datos del cliente</h4>
+                    <form method="post" action="@Url.Action("RegistrarCliente", "Registro")">
+                        <div class="mb-3">
+                            <input type="text" name="Nombre" placeholder="Nombres" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="Dni" placeholder="DNI" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" name="Email" placeholder="E-mail" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="Direccion" placeholder="Dirección" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="Telefono" placeholder="Teléfono" class="form-control">
+                        </div>
+                        <div class="button-group text-end">
+                            <button type="button" class="btn btn-secondary">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="mascota-form" class="form-container gap-2" style="display: none;">
+                    <h4>Complete los datos de la mascota</h4>
+                    <form method="post" action="@Url.Action("RegistrarMascota", "Registro")">
+                        <div class="mb-3">
+                            <input type="text" name="Nombre" placeholder="Nombre" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="Especie" placeholder="Especie" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="Raza" placeholder="Raza" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" name="Edad" placeholder="Edad" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="Color" placeholder="Color" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <select name="IdCliente" class="form-control">
+                                <option value="">Seleccione un Cliente</option>
+                                @foreach (var cliente in clientes)
+                                {
+                                    <option value="@cliente.IdCliente">@cliente.Nombre</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="button-group text-end">
+                            <button type="button" class="btn btn-secondary">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="busqueda-form" class="form-container gap-2" style="display: none;">
+                    <h4>Buscar registros</h4>
+                    <form method="get" action="@Url.Action("Buscar", "Registro")" onsubmit="buscarRegistros(event)">
+                        <div class="mb-3">
+                            <select id="tipoBusqueda" name="tipo" class="form-control">
+                                <option value="cliente">Clientes</option>
+                                <option value="mascota">Mascotas</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="criterioBusqueda" name="criterio" placeholder="Ingrese criterio de búsqueda" class="form-control">
+                        </div>
+                        <div class="button-group text-end">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </form>
+                    <div id="resultados-busqueda" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .row-content{
+        display:flex;
+        gap:20px;
+    }
+    .title-section {
+        display:flex;
+        background-color: #65a8c2;
+        padding: 15px;
+        text-align: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .sidebar {
+        display:flex;
+        background-color: #b5d6cb;
+        padding: 20px;
+        flex-direction:column;
+    }
+
+    .sidebar {
+        display: flex;
+        background-color: #b5d6cb;
+        padding: 20px;
+        flex-direction: column;
+    }
+
+        .sidebar h3 {
+            font-size: 1.2rem;
+            color: black;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+            .sidebar ul li {
+                margin: 10px 0;
+            }
+
+                .sidebar ul li a {
+                    text-decoration: none;
+                    color: #002147;
+                    font-weight: bold;
+                    cursor: pointer;
+                    display: block; /* Hace que el enlace ocupe todo el espacio del li */
+                    padding: 10px; /* Añade espacio interno para que sea más fácil hacer clic */
+                    border-radius: 5px; /* Bordes redondeados */
+                    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+                }
+
+                    .sidebar ul li a:hover {
+                        background-color: #002147; /* Cambia el fondo al pasar el mouse */
+                        color: white; /* Cambia el color del texto al pasar el mouse */
+                    }
+
+    .content-area {
+        display:flex;
+        background-color: #b5d6cb;
+        padding: 30px;
+    }
+
+    .form-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 600px;
+        margin-top: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid gray;
+    }
+
+    .button-group {
+        margin-top: 15px;
+    }
+
+    .btn-primary {
+        background-color: #65a8c2;
+        border: none;
+        padding: 10px 15px;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        padding: 10px 15px;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    showForm('cliente');
+    });
+    function showForm(form) {
+        document.getElementById('cliente-form').style.display = 'none';
+        document.getElementById('mascota-form').style.display = 'none';
+        document.getElementById('busqueda-form').style.display = 'none';
+        document.getElementById(form + '-form').style.display = 'block';
+    }
+
+    function buscarRegistros(event) {
+        event.preventDefault();
+        let tipo = document.getElementById('tipoBusqueda').value;
+        let criterio = document.getElementById('criterioBusqueda').value;
+
+        fetch(`/Registro/Buscar?tipo=${tipo}&criterio=${criterio}`)
+            .then(response => response.json())
+            .then(data => {
+                let resultadosDiv = document.getElementById('resultados-busqueda');
+                resultadosDiv.innerHTML = "";
+                if (data.length > 0) {
+                    let table = `<table class='table table-bordered'><thead><tr>`;
+                    Object.keys(data[0]).forEach(key => {
+                        table += `<th>${key}</th>`;
+                    });
+                    table += `</tr></thead><tbody>`;
+                    data.forEach(item => {
+                        table += `<tr>`;
+                        Object.values(item).forEach(value => {
+                            table += `<td>${value}</td>`;
+                        });
+                        table += `</tr>`;
+                    });
+                    table += `</tbody></table>`;
+                    resultadosDiv.innerHTML = table;
+                } else {
+                    resultadosDiv.innerHTML = "<p>No se encontraron resultados</p>";
+                }
+            });
+    }
+</script>

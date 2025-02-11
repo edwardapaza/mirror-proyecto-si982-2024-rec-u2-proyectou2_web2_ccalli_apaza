@@ -1,0 +1,222 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Edward\\Downloads\\Animalia\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\views\\registro\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:views\\registro\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\views\\agendamiento\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:views\\agendamiento\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\controllers\\agendamientocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:controllers\\agendamientocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\controllers\\informescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:controllers\\informescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\views\\informes\\creatediagnostico.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:views\\informes\\creatediagnostico.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\views\\informes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:views\\informes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\downloads\\animalia\\models\\consulta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:models\\consulta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAQwBsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T17:40:27.795Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Agendamiento\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Agendamiento\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Agendamiento\\Index.cshtml*",
+              "RelativeToolTip": "Views\\Agendamiento\\Index.cshtml*",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAAwLMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T20:22:03.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AgendamientoController.cs",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Controllers\\AgendamientoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AgendamientoController.cs",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Controllers\\AgendamientoController.cs",
+              "RelativeToolTip": "Controllers\\AgendamientoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T20:21:42.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Login\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Login\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Login\\Index.cshtml",
+              "RelativeToolTip": "Views\\Login\\Index.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAEIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T17:49:14.645Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-11T17:12:35.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateDiagnostico.cshtml",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Informes\\CreateDiagnostico.cshtml",
+              "RelativeDocumentMoniker": "Views\\Informes\\CreateDiagnostico.cshtml",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Informes\\CreateDiagnostico.cshtml",
+              "RelativeToolTip": "Views\\Informes\\CreateDiagnostico.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAGkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T04:01:52.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwD4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T03:53:45.109Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Informes\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Informes\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Informes\\Index.cshtml",
+              "RelativeToolTip": "Views\\Informes\\Index.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T03:50:22.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Consulta.cs",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Models\\Consulta.cs",
+              "RelativeDocumentMoniker": "Models\\Consulta.cs",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Models\\Consulta.cs",
+              "RelativeToolTip": "Models\\Consulta.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAADwvykAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T03:49:33.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Registro\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Registro\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Registro\\Index.cshtml",
+              "RelativeToolTip": "Views\\Registro\\Index.cshtml",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAQwJkAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T03:46:30.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InformesController.cs",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Controllers\\InformesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\InformesController.cs",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Controllers\\InformesController.cs",
+              "RelativeToolTip": "Controllers\\InformesController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAQwEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T03:44:29.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Edward\\Downloads\\Animalia\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-01T02:11:53.98Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

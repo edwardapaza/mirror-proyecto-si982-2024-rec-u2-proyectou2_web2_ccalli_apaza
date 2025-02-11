@@ -1,0 +1,106 @@
+﻿@model Animalia.Models.Diagnostico
+
+@{
+    ViewData["Title"] = "Crear Diagnóstico";
+}
+
+<div class="container mt-4">
+    <div class="title-section mb-3">
+        <h2>Crear Diagnóstico</h2>
+    </div>
+
+    <div class="content-area">
+        <h4>Ingrese los datos del diagnóstico</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-8">
+                <form asp-action="CreateDiagnostico" asp-controller="Informes">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <input type="hidden" name="IdConsulta" value="@ViewBag.IdConsulta" />
+                    <div class="mb-3">
+                        <label asp-for="Peso" class="form-label">Peso</label>
+                        <input asp-for="Peso" class="form-control" />
+                        <span asp-validation-for="Peso" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Observaciones" class="form-label">Observaciones</label>
+                        <textarea asp-for="Observaciones" class="form-control"></textarea>
+                        <span asp-validation-for="Observaciones" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ExamenesRealizados" class="form-label">Exámenes Realizados</label>
+                        <textarea asp-for="ExamenesRealizados" class="form-control"></textarea>
+                        <span asp-validation-for="ExamenesRealizados" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="DiagnosticoGeneral" class="form-label">Diagnóstico General</label>
+                        <textarea asp-for="DiagnosticoGeneral" class="form-control"></textarea>
+                        <span asp-validation-for="DiagnosticoGeneral" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 button-group text-end">
+                        <button type="submit" class="btn btn-primary">Guardar Diagnóstico</button>
+                        <a asp-action="Index" asp-controller="Informes" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .title-section {
+        display: flex;
+        background-color: #65a8c2;
+        padding: 15px;
+        text-align: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .content-area {
+        background-color: #b5d6cb;
+        padding: 30px;
+    }
+
+    h4 {
+        color: #002147;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .form-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 600px;
+        margin-top: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid gray;
+    }
+
+    .button-group {
+        margin-top: 15px;
+    }
+
+    .btn-primary {
+        background-color: #65a8c2;
+        border: none;
+        padding: 10px 15px;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        padding: 10px 15px;
+    }
+</style>

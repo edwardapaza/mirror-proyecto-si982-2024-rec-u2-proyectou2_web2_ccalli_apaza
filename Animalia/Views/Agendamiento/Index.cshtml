@@ -1,0 +1,259 @@
+﻿@{
+    ViewData["Title"] = "Agendamiento de Consultas";
+    var mascotas = ViewBag.Mascotas as List<Animalia.Models.Mascota> ?? new List<Animalia.Models.Mascota>();
+    var veterinarios = ViewBag.Veterinarios as List<Animalia.Models.Veterinario> ?? new List<Animalia.Models.Veterinario>();
+    var consultas = ViewBag.Consultas as List<Animalia.Models.Consulta> ?? new List<Animalia.Models.Consulta>();
+}
+
+<div class="container mt-4">
+    <!-- Título -->
+    <div class="title-section mb-3">
+        <h2>Agendamiento de Consultas</h2>
+    </div>
+
+    <div class="row-content">
+        <!-- Menú lateral -->
+        <div class="col-md-3 sidebar">
+            <h3>Agendamiento</h3>
+            <ul>
+                <li><a href="#" onclick="showForm('nueva-consulta')">Nueva Consulta</a></li>
+                <li><a href="#" onclick="showForm('reprogramar-cita')">Reprogramar Cita</a></li>
+                <li><a href="#" onclick="showForm('cancelar-cita')">Cancelar Cita</a></li>
+            </ul>
+        </div>
+
+        <!-- Contenido dinámico con espacio correcto -->
+        <div class="col-md-9 content-area">
+            <div class="form-wrapper">
+                <!-- Formulario Nueva Consulta -->
+                <div id="nueva-consulta" class="form-container gap-2">
+                    <h4>Rellene los datos de la consulta</h4>
+                    <form method="post" action="@Url.Action("AgregarConsulta", "Agendamiento")">
+                        <div class="mb-3">
+                            <select id="Mascota" name="IdMascota" class="form-control" required onchange="actualizarTutor()">
+                                <option value="">Seleccione una Mascota</option>
+                                @foreach (var mascota in mascotas)
+                                {
+                                    <option value="@mascota.IdMascota" data-cliente="@mascota.Cliente?.Nombre">@mascota.Nombre</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="Tutor" name="Tutor" placeholder="Nombre del tutor" class="form-control" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <textarea name="Descripcion" class="form-control" placeholder="Descripción de la consulta"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <input type="date" name="Fecha" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="time" name="Hora" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <select name="IdVeterinario" class="form-control" required>
+                                <option value="">Seleccione un Veterinario</option>
+                                @foreach (var vet in veterinarios)
+                                {
+                                    <option value="@vet.IdVeterinario">@vet.Nombre - @vet.Especialidad</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="button-group text-end">
+                            <button type="button" class="btn btn-secondary">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Agendar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Formulario Reprogramar Cita -->
+                <div id="reprogramar-cita" class="form-container gap-2" style="display: none;">
+                    <h4>Reprogramar Cita</h4>
+                    <form method="post" action="@Url.Action("ReprogramarConsulta", "Agendamiento")">
+                        <div class="mb-3">
+                            <select name="IdConsulta" class="form-control" required>
+                                <option value="">Seleccione una Cita</option>
+                                @foreach (var consulta in consultas)
+                                {
+                                    <option value="@consulta.IdConsulta">@consulta.Mascota.Nombre - @consulta.Fecha.ToShortDateString() @consulta.Hora</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="date" name="NuevaFecha" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="time" name="NuevaHora" class="form-control" required>
+                        </div>
+                        <div class="button-group text-end">
+                            <button type="button" class="btn btn-secondary">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Reprogramar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Formulario Cancelar Cita -->
+                <div id="cancelar-cita" class="form-container gap-2" style="display: none;">
+                    <h4>Cancelar Cita</h4>
+                    <form method="post" action="@Url.Action("CancelarConsulta", "Agendamiento")">
+                        <div class="mb-3">
+                            <select name="IdConsulta" class="form-control" required>
+                                <option value="">Seleccione una Cita</option>
+                                @foreach (var consulta in consultas)
+                                {
+                                    <option value="@consulta.IdConsulta">@consulta.Mascota.Nombre - @consulta.Fecha.ToShortDateString() @consulta.Hora</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="button-group text-end">
+                            <button type="submit" class="btn btn-danger">Cancelar Cita</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Tabla de Consultas -->
+                <div class="mt-4">
+                    <h4>Consultas Agendadas</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Mascota</th>
+                                <th>Tutor</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Veterinario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var consulta in consultas)
+                            {
+                                <tr>
+                                    <td>@consulta.Mascota.Nombre</td>
+                                    <td>@consulta.Mascota.Cliente.Nombre</td>
+                                    <td>@consulta.Fecha.ToShortDateString()</td>
+                                    <td>@consulta.Hora</td>
+                                    <td>@consulta.Veterinario.Nombre</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .row-content {
+        display: flex;
+        gap: 20px;
+    }
+
+    .title-section {
+        display: flex;
+        background-color: #65a8c2;
+        padding: 15px;
+        text-align: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .sidebar {
+    display: flex;
+    background-color: #b5d6cb;
+    padding: 20px;
+    flex-direction: column;
+    }
+
+    .sidebar h3 {
+        font-size: 1.2rem;
+        color: black;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar ul li {
+        margin: 10px 0;
+    }
+
+    .sidebar ul li a {
+        text-decoration: none;
+        color: #002147;
+        font-weight: bold;
+        cursor: pointer;
+        display: block; /* Hace que el enlace ocupe todo el espacio del li */
+        padding: 10px; /* Añade espacio interno para que sea más fácil hacer clic */
+        border-radius: 5px; /* Bordes redondeados */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+    }
+
+    .sidebar ul li a:hover {
+        background-color: #002147; /* Cambia el fondo al pasar el mouse */
+        color: white; /* Cambia el color del texto al pasar el mouse */
+    }
+
+    .content-area {
+        display: flex;
+        background-color: #b5d6cb;
+        padding: 30px;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 600px;
+        margin-top: 20px;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        showForm('nueva-consulta');
+    });
+
+    function showForm(form) {
+        document.getElementById('nueva-consulta').style.display = 'none';
+        document.getElementById('reprogramar-cita').style.display = 'none';
+        document.getElementById('cancelar-cita').style.display = 'none';
+        document.getElementById(form).style.display = 'block';
+    }
+
+    function actualizarTutor() {
+        let selectMascota = document.getElementById('Mascota');
+        let tutorInput = document.getElementById('Tutor');
+        let tutorNombre = selectMascota.options[selectMascota.selectedIndex].getAttribute("data-cliente");
+        tutorInput.value = tutorNombre || "";
+    }
+
+    function enviarFormulario(event, formId, url) {
+        event.preventDefault();
+        let formData = new FormData(document.getElementById(formId));
+
+        fetch(url, {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            if (data.success) {
+                actualizarTabla();
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    }
+
+    function actualizarTabla() {
+        fetch("/Agendamiento/Index")
+        .then(response => response.text())
+        .then(html => {
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(html, "text/html");
+            document.querySelector("table tbody").innerHTML = doc.querySelector("table tbody").innerHTML;
+        });
+    }
+</script>
