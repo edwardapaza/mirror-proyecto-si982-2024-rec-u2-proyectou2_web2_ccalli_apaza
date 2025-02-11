@@ -1,16 +1,15 @@
-name: CI/CD para ASP.NET Core en Azure
+name: Construcción y despliegue de una aplicación MVC a Azure
 
 env:
-  AZURE_WEBAPP_NAME: "upt-awa-app"        # Nombre de la aplicación en Azure
-  DOTNET_VERSION: "8.0"                   # Versión de .NET
-  AZURE_WEBAPP_PACKAGE_PATH: '.'  # Ruta al paquete publicado
+  AZURE_WEBAPP_NAME: upt-awa-app        # Nombre de la aplicación en Azure
+  DOTNET_VERSION: '8'                   # Versión de .NET
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - "Animalia/**"
-      - ".github/workflows/**"
+      - 'Animalia/**'                    # Ruta de tu aplicación
+      - '.github/workflows/**'
   workflow_dispatch:
 
 permissions:
@@ -21,31 +20,38 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del código
-        uses: actions/checkout@v4
+      # Clonar el repositorio
+      - uses: actions/checkout@v4
 
-      - name: Configurar .NET
-        uses: actions/setup-dotnet@v3
+      # Iniciar sesión en el Docker registry (si lo usas)
+      - name: 'Login to GitHub Container Registry'
+        uses: docker/login-action@v3
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+            registry: ghcr.io
+            username: ${{github.actor}}
+            password: ${{ secrets.GHCR_TOKEN }} 
 
-      - name: Restaurar dependencias
-        run: cd Animalia && dotnet restore
-
-      - name: Compilar la aplicación
-        run: cd Animalia && dotnet build --configuration Release --no-restore
-
-      - name: Publicar la aplicación
-        run: cd Animalia && dotnet publish --configuration Release --output ./bin/Release/net8.0/publish
+      # Construir la imagen Docker
+      - name: 'Build MVC App Docker Image'
+        run: |
+            docker build -f Dockerfile -t ghcr.io/${{github.actor}}/shorten02:${{github.sha}} .
+            docker push ghcr.io/${{github.actor}}/shorten02:${{github.sha}}
 
   deploy:
+    permissions:
+      contents: none
     runs-on: ubuntu-latest
     needs: build
+    environment:
+      name: 'Development'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
     steps:
-      - name: Desplegar a Azure Web App
+      # Desplegar la aplicación a Azure Web App desde Docker
+      - name: 'Desplegar a Azure Web App'
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-          restart: true
+          images: ghcr.io/${{github.actor}}/shorten02:${{github.sha}}
