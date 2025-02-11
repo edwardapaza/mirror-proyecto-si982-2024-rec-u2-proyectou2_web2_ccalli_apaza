@@ -4,12 +4,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copiar el proyecto .csproj y restaurar las dependencias
-COPY Animalia/*.csproj ./ 
-RUN dotnet restore
-
 # Copiar el resto de los archivos y compilar la aplicación
-COPY Animalia/. ./ 
+COPY Animalia/. ./
+RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 # Utilizar la imagen base de .NET Runtime
