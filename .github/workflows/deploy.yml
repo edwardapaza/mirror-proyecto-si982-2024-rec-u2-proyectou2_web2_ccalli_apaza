@@ -8,7 +8,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - "Animalia/**"
+      - "infra/**"
       - ".github/workflows/**"
   workflow_dispatch:
 
@@ -29,13 +29,13 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restaurar dependencias
-        run: dotnet restore
+        run: dotnet restore Animalia/Animalia.sln  # Especifica la solución
 
       - name: Compilar la aplicación
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build Animalia/Animalia.sln --configuration Release --no-restore  # Usa el archivo de solución
 
       - name: Ejecutar pruebas
-        run: dotnet test --configuration Release --no-restore
+        run: dotnet test Animalia/Animalia.sln --configuration Release --no-restore  # Usa el archivo de solución
 
   deploy:
     runs-on: ubuntu-latest
