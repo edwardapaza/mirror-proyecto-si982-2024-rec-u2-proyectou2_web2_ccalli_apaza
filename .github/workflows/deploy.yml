@@ -1,7 +1,7 @@
 name: CI/CD para ASP.NET Core en Azure
 
 env:
-  AZURE_WEBAPP_NAME: "upt-awa-xxx"  # Nombre de la aplicación en Azure
+  AZURE_WEBAPP_NAME: "upt-awa-app"  # Nombre de la aplicación en Azure
   DOTNET_VERSION: "8.0"             # Versión de .NET
 
 on:
