@@ -35,7 +35,7 @@ resource "azurerm_service_plan" "appserviceplan" {
 
 # Crear la Aplicación Web en Azure
 resource "azurerm_linux_web_app" "webapp" {
-  name                = "upt-awa-app"
+  name                = "upt-awa-animalia"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   service_plan_id     = azurerm_service_plan.appserviceplan.id
