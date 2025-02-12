@@ -127,16 +127,18 @@ jobs:
           echo "Infracost failed. Check the logs for details." >> $GITHUB_STEP_SUMMARY
           cat infra/infracost-report.html >> $GITHUB_STEP_SUMMARY # Show HTML for debugging
           exit 1
-      - name: Convert HTML to Markdown
-        id: html2markdown
-        uses: rknj/html2markdown@v1.1.0
-        with:
-          html-file: "infra/infracost-report.html"
+      - name: Install pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install pandoc
+      - name: Convert HTML to Markdown with pandoc
+        run: |
+          cd infra
+          pandoc infracost-report.html -o infracost-report.md
       - name: Upload infracost report
         run: |
           echo "## infracost Report" >> $GITHUB_STEP_SUMMARY
-          echo "${{ steps.html2markdown.outputs.markdown-content }}" >> infracost.md
-          cat infracost.md >> $GITHUB_STEP_SUMMARY
+          cat infra/infracost-report.md >> $GITHUB_STEP_SUMMARY
 
       - name: Terraform Apply
         run: |
