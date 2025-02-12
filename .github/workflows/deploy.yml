@@ -1,7 +1,7 @@
 name: Construcción y despliegue de Animalia en Azure App Service
 
 env:
-  AZURE_WEBAPP_NAME: animaliavet  # Debe coincidir con el nombre en Azure
+  AZURE_WEBAPP_NAME: upt-awa-animalia  # Debe coincidir con el nombre en Azure
   AZURE_WEBAPP_PACKAGE_PATH: '.'
   DOTNET_VERSION: '8'
  
