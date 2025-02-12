@@ -1,6 +1,6 @@
 ﻿using Animalia.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.FileProviders; // Ya no es necesario, puedes eliminarlo
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,13 +23,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 
-app.UseStaticFiles();
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(Directory.GetCurrentDirectory(), "Assets")),
-    RequestPath = "/Assets"
-});
+app.UseStaticFiles(); // Esto sirve archivos desde wwwroot, incluyendo la carpeta "images"
 
 app.UseRouting();
 app.UseSession();
