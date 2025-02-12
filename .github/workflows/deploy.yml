@@ -2,7 +2,7 @@ name: Construcción y despliegue de Animalia en Azure App Service
 
 env:
   AZURE_WEBAPP_NAME: animaliavet
-  AZURE_WEBAPP_PACKAGE_PATH: 'myapp'  # Corregido
+  AZURE_WEBAPP_PACKAGE_PATH: '.'  # Usamos '.' como en el ejemplo
   DOTNET_VERSION: '8'
 
 on:
@@ -39,27 +39,30 @@ jobs:
         working-directory: Animalia
         run: dotnet publish -c Release -o ${{ github.workspace }}/myapp  # Ruta corregida
 
-      - name: Empaquetar la app
+      - name: Empaquetar la app para despliegue
         uses: actions/upload-artifact@v4
         with:
           name: animalia-package
-          path: ${{ github.workspace }}/myapp
+          path: ${{ github.workspace }}/myapp  # Ruta corregida
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: none
     environment:
       name: Production
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}  # URL de despliegue
     steps:
-      - name: Descargar artefacto
+      - name: Descargar el paquete de la app
         uses: actions/download-artifact@v4
         with:
           name: animalia-package
-          path: ${{ github.workspace }}/myapp  # Especifica la ruta de descarga
 
-      - name: Desplegar a Azure
+      - name: Desplegar a Azure App Service
+        id: deploy-to-webapp  # Asignamos un ID para usar la salida
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ github.workspace }}/myapp  # Usa la ruta completa
+          package: .  # Usamos '.' como en el ejemplo
