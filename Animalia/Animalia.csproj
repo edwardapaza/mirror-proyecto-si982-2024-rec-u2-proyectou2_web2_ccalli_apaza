@@ -24,4 +24,7 @@
     <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.1" />
   </ItemGroup>
 
-</Project>
+  <ItemGroup>
+    <Content Include="Assets\**\*.*" />  </ItemGroup>
+
+  </Project>
