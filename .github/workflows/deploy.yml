@@ -8,42 +8,31 @@ env:
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - 'Animalia/**'
-      - '.github/workflows/**'
   workflow_dispatch:
-
-permissions:
-  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Configurar .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-
       - name: Restaurar dependencias
         working-directory: Animalia
         run: dotnet restore
-
       - name: Construir la app
         working-directory: Animalia
         run: dotnet build --configuration Release --no-restore
-
       - name: Publicar la app
         working-directory: Animalia
-        run: dotnet publish -c Release -o ${{ github.workspace }}/myapp  # Ruta corregida
-
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp  # Ruta corregida
       - name: Empaquetar la app para despliegue
         uses: actions/upload-artifact@v4
         with:
           name: animalia-package
-          path: ${{ github.workspace }}/myapp  # Ruta corregida
+          path: ${{env.DOTNET_ROOT}}/myapp  # Ruta corregida
 
   deploy:
     needs: build
@@ -58,7 +47,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: animalia-package
-
       - name: Desplegar a Azure App Service
         id: deploy-to-webapp  # Asignamos un ID para usar la salida
         uses: azure/webapps-deploy@v2
