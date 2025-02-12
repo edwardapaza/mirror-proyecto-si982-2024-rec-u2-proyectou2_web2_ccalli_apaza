@@ -21,6 +21,7 @@ jobs:
         run: |
           cd infra
           echo "suscription_id=\"${{ secrets.SUSCRIPTION_ID }}\"" > terraform.tfvars
+          # Remove SQL vars from here
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -31,7 +32,7 @@ jobs:
         id: validate
         run: cd infra && terraform validate -no-color
       - name: Terraform Plan
-        run: cd infra && terraform plan -var="suscription_id=${{ secrets.SUSCRIPTION_ID }}" -no-color -out main.tfplan
+        run: cd infra && terraform plan -var="suscription_id=${{ secrets.SUSCRIPTION_ID }}" -no-color -out main.tfplan # Remove SQL vars
 
       - name: Create String Output
         id: tf-plan-string
@@ -116,29 +117,19 @@ jobs:
         with:
           api-key: ${{ secrets.INFRACOST_API_KEY }}
       - name: infracost
-        id: infracost
         run: |
           cd infra
-          infracost breakdown --path . --format html --out-file infracost-report.html # Generate HTML first
-      - name: Check infracost status
-        if: steps.infracost.outcome == 'failure'
-        run: |
-          echo "## Infracost Report (FAILED)" >> $GITHUB_STEP_SUMMARY
-          echo "Infracost failed. Check the logs for details." >> $GITHUB_STEP_SUMMARY
-          cat infra/infracost-report.html >> $GITHUB_STEP_SUMMARY # Show HTML for debugging
-          exit 1
-      - name: Install pandoc
-        run: |
-          sudo apt-get update
-          sudo apt-get install pandoc
-      - name: Convert HTML to Markdown with pandoc
-        run: |
-          cd infra
-          pandoc infracost-report.html -o infracost-report.md
+          infracost breakdown --path . --format html --out-file infracost-report.html
+      - name: Convert HTML to Markdown
+        id: html2markdown
+        uses: rknj/html2markdown@v1.1.0
+        with:
+          html-file: "infra/infracost-report.html"
       - name: Upload infracost report
         run: |
           echo "## infracost Report" >> $GITHUB_STEP_SUMMARY
-          cat infra/infracost-report.md >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.html2markdown.outputs.markdown-content }}" >> infracost.md
+          cat infracost.md >> $GITHUB_STEP_SUMMARY
 
       - name: Terraform Apply
         run: |
