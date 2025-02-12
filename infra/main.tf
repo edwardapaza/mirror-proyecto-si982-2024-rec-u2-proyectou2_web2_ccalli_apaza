@@ -52,7 +52,7 @@ resource "azurerm_linux_web_app" "webapp" {
 
 # Recurso para configurar el control de código fuente en Azure App Service
 resource "azurerm_app_service_source_control" "app_service_source_control" {
-  app_id = azurerm_app_service.app_service.id  # ID de la App Service
+  app_id = azurerm_linux_web_app.webapp.id  # ID de la App Service
   repo_url = "https://github.com/UPT-FAING-EPIS/proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"  # URL del repositorio
   branch = "main"  # Rama a desplegar
   use_manual_integration = false  # Integración automática
