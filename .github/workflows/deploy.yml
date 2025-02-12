@@ -1,8 +1,9 @@
-name: Construcción y despliegue de una aplicación MVC a Azure
+name: Construcción y despliegue de Animalia en Azure App Service
 
 env:
-  AZURE_WEBAPP_NAME: upt-awa-app        # Nombre de la aplicación en Azure
-  DOTNET_VERSION: '8'                   # Versión de .NET
+  AZURE_WEBAPP_NAME: animaliavet        # Nombre de la aplicación en Azure
+  AZURE_WEBAPP_PACKAGE_PATH: '.'        # Ruta del paquete para el despliegue
+  DOTNET_VERSION: '8'                    # Versión de .NET
 
 on:
   push:
@@ -14,7 +15,6 @@ on:
 
 permissions:
   contents: read
-  packages: write
 
 jobs:
   build:
@@ -23,35 +23,54 @@ jobs:
       # Clonar el repositorio
       - uses: actions/checkout@v4
 
-      # Iniciar sesión en el Docker registry (si lo usas)
-      - name: 'Login to GitHub Container Registry'
-        uses: docker/login-action@v3
+      # Configurar .NET Core
+      - name: Configurar .NET Core
+        uses: actions/setup-dotnet@v4
         with:
-            registry: ghcr.io
-            username: ${{github.actor}}
-            password: ${{ secrets.GHCR_TOKEN }} 
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      # Construir la imagen Docker
-      - name: 'Build MVC App Docker Image'
-        run: |
-            docker build -f Dockerfile -t ghcr.io/${{github.actor}}/shorten02:${{github.sha}} .
-            docker push ghcr.io/${{github.actor}}/shorten02:${{github.sha}}
+      # Restaurar dependencias
+      - name: Restaurar dependencias
+        working-directory: Animalia
+        run: dotnet restore
+
+      # Construir la aplicación
+      - name: Construir la app
+        working-directory: Animalia
+        run: dotnet build --configuration Release --no-restore
+
+      # Publicar la aplicación
+      - name: Publicar la app
+        working-directory: Animalia
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      # Empaquetar la app para el despliegue
+      - name: Empaquetar la app para despliegue
+        uses: actions/upload-artifact@v4
+        with:
+          name: animalia-package
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     permissions:
       contents: none
-    runs-on: ubuntu-latest
-    needs: build
     environment:
-      name: 'Development'
+      name: Production
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
     steps:
-      # Desplegar la aplicación a Azure Web App desde Docker
-      - name: 'Desplegar a Azure Web App'
+      # Descargar el paquete de la app
+      - name: Descargar el paquete de la app
+        uses: actions/download-artifact@v4
+        with:
+          name: animalia-package
+
+      # Desplegar a Azure App Service
+      - name: Desplegar a Azure App Service
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: ghcr.io/${{github.actor}}/shorten02:${{github.sha}}
+          package: .
