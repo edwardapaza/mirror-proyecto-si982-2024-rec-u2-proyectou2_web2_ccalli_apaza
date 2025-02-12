@@ -20,8 +20,7 @@ jobs:
       - name: Create terraform.tfvars
         run: |
           cd infra
-          echo "suscription_id=\"${{ secrets.SUSCRIPTION_ID }}\"" > terraform.tfvars # Keep this
-          # Remove SQL user/pass from here
+          echo "suscription_id=\"${{ secrets.SUSCRIPTION_ID }}\"" > terraform.tfvars
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -32,7 +31,7 @@ jobs:
         id: validate
         run: cd infra && terraform validate -no-color
       - name: Terraform Plan
-        run: cd infra && terraform plan -var="suscription_id=${{ secrets.SUSCRIPTION_ID }}" -no-color -out main.tfplan # Remove SQL vars
+        run: cd infra && terraform plan -var="suscription_id=${{ secrets.SUSCRIPTION_ID }}" -no-color -out main.tfplan
 
       - name: Create String Output
         id: tf-plan-string
@@ -55,8 +54,6 @@ jobs:
           SUMMARY: ${{ steps.tf-plan-string.outputs.summary }}
         run: |
           echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
-
-      # Remove tfsec related steps
 
       - name: Outputs
         id: vars
@@ -122,27 +119,13 @@ jobs:
         run: |
           cd infra
           infracost breakdown --path . --format html --out-file infracost-report.html
-          # The following lines are problematic.  infracost outputs valid HTML.  Don't try to "fix" it.
-          # sed -i '19,137d' infracost-report.html
-          # sed -i 's/$0/$ 0/g' infracost-report.html
 
-      - name: Convert HTML to Markdown (If absolutely needed)
-        id: html2markdown
-        uses: rknj/html2markdown@v1.1.0
-        with:
-          html-file: "infra/infracost-report.html"
-        # Only include the next step if you are converting to markdown
       - name: Upload infracost report
         run: |
           echo "## infracost Report" >> $GITHUB_STEP_SUMMARY
-          # if you are converting to markdown:
-          # echo "${{ steps.html2markdown.outputs.markdown-content }}" >> infracost.md
-          # cat infracost.md >> $GITHUB_STEP_SUMMARY
-          # if you are NOT converting to markdown (recommended):
           cat infra/infracost-report.html >> $GITHUB_STEP_SUMMARY
-
 
       - name: Terraform Apply
         run: |
           cd infra
-          terraform apply -var="suscription_id=${{ secrets.SUSCRIPTION_ID }}" -auto-approve main.tfplan # Remove SQL vars
+          terraform apply -var="suscription_id=${{ secrets.SUSCRIPTION_ID }}" -auto-approve main.tfplan
