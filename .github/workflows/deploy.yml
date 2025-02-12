@@ -1,15 +1,15 @@
 name: Construcción y despliegue de Animalia en Azure App Service
 
 env:
-  AZURE_WEBAPP_NAME: animaliavet        # Nombre de la aplicación en Azure
-  AZURE_WEBAPP_PACKAGE_PATH: '.'        # Ruta del paquete para el despliegue
-  DOTNET_VERSION: '8'                    # Versión de .NET
+  AZURE_WEBAPP_NAME: animaliavet
+  AZURE_WEBAPP_PACKAGE_PATH: 'myapp'  # Corregido
+  DOTNET_VERSION: '8'
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - 'Animalia/**'                    # Ruta de tu aplicación
+      - 'Animalia/**'
       - '.github/workflows/**'
   workflow_dispatch:
 
@@ -20,57 +20,45 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Clonar el repositorio
       - uses: actions/checkout@v4
 
-      # Configurar .NET Core
       - name: Configurar .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      # Restaurar dependencias
       - name: Restaurar dependencias
         working-directory: Animalia
         run: dotnet restore
 
-      # Construir la aplicación
       - name: Construir la app
         working-directory: Animalia
         run: dotnet build --configuration Release --no-restore
 
-      # Publicar la aplicación
       - name: Publicar la app
         working-directory: Animalia
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ${{ github.workspace }}/myapp  # Ruta corregida
 
-      # Empaquetar la app para el despliegue
-      - name: Empaquetar la app para despliegue
+      - name: Empaquetar la app
         uses: actions/upload-artifact@v4
         with:
           name: animalia-package
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{ github.workspace }}/myapp
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      contents: none
     environment:
       name: Production
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     steps:
-      # Descargar el paquete de la app
-      - name: Descargar el paquete de la app
+      - name: Descargar artefacto
         uses: actions/download-artifact@v4
         with:
           name: animalia-package
 
-      # Desplegar a Azure App Service
-      - name: Desplegar a Azure App Service
-        id: deploy-to-webapp
+      - name: Desplegar a Azure
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: .
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}  # Ahora apunta a 'myapp'
