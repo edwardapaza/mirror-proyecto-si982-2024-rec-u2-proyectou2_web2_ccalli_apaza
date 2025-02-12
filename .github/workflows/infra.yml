@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: login azure
         run: |
-          az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
+          az login -u ${{ secrets.AWA_USERNAME }} -p ${{ secrets.AWA_USERPASS }}
 
       - name: Setup tfsec
         run: |
@@ -25,26 +25,31 @@ jobs:
           chmod +x /usr/local/bin/tfsec
       - name: tfsec
         run: |
-          cd infra # Corregido: cd Infra -> cd infra
+          cd infra
           /usr/local/bin/tfsec --format=markdown --out=tfsec.md .
           echo "## TFSec Output" >> $GITHUB_STEP_SUMMARY
           cat tfsec.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Create terraform.tfvars # Asegúrate de que este paso esté antes de Terraform Init
+        run: |
+          cd infra
+          echo "suscription_id=\"${{ secrets.SUSCRIPTION_ID }}\"" > terraform.tfvars # Incluye la suscripción aquí
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
       - name: Terraform Init
         id: init
-        run: cd infra && terraform init # Corregido: cd Infra -> cd infra
+        run: cd infra && terraform init
       - name: Terraform Validate
         id: validate
-        run: cd infra && terraform validate -no-color # Corregido: cd Infra -> cd infra
+        run: cd infra && terraform validate -no-color
       - name: Terraform Plan
-        run: cd infra && terraform plan -no-color -out main.tfplan # Corregido: cd Infra -> cd infra
+        run: cd infra && terraform plan -no-color -out main.tfplan
 
       - name: Create String Output
         id: tf-plan-string
         run: |
-          TERRAFORM_PLAN=$(cd infra && terraform show -no-color main.tfplan) # Corregido: cd Infra -> cd infra
+          TERRAFORM_PLAN=$(cd infra && terraform show -no-color main.tfplan)
 
           delimiter="$(openssl rand -hex 8)"
           echo "summary<<${delimiter}" >> $GITHUB_OUTPUT
@@ -91,7 +96,7 @@ jobs:
       - name: Terramaid
         id: terramaid
         run: |
-          cd infra # Corregido: cd Infra -> cd infra
+          cd infra
           /usr/local/bin/terramaid run
 
       - name: Publish graph in step comment
@@ -110,7 +115,7 @@ jobs:
           chmod +x /usr/local/bin/inframap
       - name: Inframap
         run: |
-          cd infra # Corregido: cd Infra -> cd infra
+          cd infra
           /usr/local/bin/inframap generate main.tf --raw | dot -Tsvg > inframap_azure.svg
       - name: Upload inframap
         id: inframap-upload-step
@@ -125,13 +130,10 @@ jobs:
           api-key: ${{ secrets.INFRACOST_API_KEY }}
       - name: Infracost
         run: |
-          cd infra # Corregido: cd Infra -> cd infra
+          cd infra
           infracost breakdown --path . --format html --out-file infracost-report.html
-          # Las siguientes líneas son problemáticas y no deberían usarse.
-          # sed -i '19,137d' infracost-report.html
-          # sed -i 's/$0/$ 0/g' infracost-report.html
 
-      - name: Convert HTML to Markdown  # Mantener este paso si se necesita Markdown
+      - name: Convert HTML to Markdown
         id: html2markdown
         uses: rknj/html2markdown@v1.1.0
         with:
@@ -140,13 +142,10 @@ jobs:
       - name: Upload infracost report
         run: |
           echo "## Infracost Report" >> $GITHUB_STEP_SUMMARY
-          # Si se usa la conversión a Markdown:
           echo "${{ steps.html2markdown.outputs.markdown-content }}" >> infracost.md
           cat infracost.md >> $GITHUB_STEP_SUMMARY
-          # Si NO se usa la conversión a Markdown (se prefiere HTML directamente):
-          # cat infra/infracost-report.html >> $GITHUB_STEP_SUMMARY
 
       - name: Terraform Apply
         run: |
-          cd infra # Corregido: cd Infra -> cd infra
+          cd infra
           terraform apply -auto-approve main.tfplan
