@@ -1,4 +1,4 @@
-name: Construcción Infraestructura en Azure
+name: Construcción infraestructura en Azure
 
 on:
   push:
@@ -9,32 +9,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  Deploy-Infra:
+  Deploy-infra:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: login azure
         run: |
-          az login -u ${{ secrets.AWA_USERNAME }} -p ${{ secrets.AWA_USERPASS }}
-
-      - name: Setup tfsec
-        run: |
-          curl -L -o /tmp/tfsec_1.28.13_linux_amd64.tar.gz "https://github.com/aquasecurity/tfsec/releases/download/v1.28.13/tfsec_1.28.13_linux_amd64.tar.gz"
-          tar -xzvf /tmp/tfsec_1.28.13_linux_amd64.tar.gz -C /tmp
-          mv -v /tmp/tfsec /usr/local/bin/tfsec
-          chmod +x /usr/local/bin/tfsec
-      - name: tfsec
+          az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}
+      - name: Create terraform.tfvars
         run: |
           cd infra
-          /usr/local/bin/tfsec --format=markdown --out=tfsec.md .
-          echo "## TFSec Output" >> $GITHUB_STEP_SUMMARY
-          cat tfsec.md >> $GITHUB_STEP_SUMMARY
-
-      - name: Create terraform.tfvars # Asegúrate de que este paso esté antes de Terraform Init
-        run: |
-          cd infra
-          echo "suscription_id=\"${{ secrets.SUSCRIPTION_ID }}\"" > terraform.tfvars # Incluye la suscripción aquí
-
+          echo "suscription_id=\"${{ secrets.SUSCRIPTION_ID }}\"" > terraform.tfvars
+          # Remove SQL vars from here
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
       - name: Terraform Init
@@ -44,13 +30,12 @@ jobs:
         id: validate
         run: cd infra && terraform validate -no-color
       - name: Terraform Plan
-        run: cd infra && terraform plan -no-color -out main.tfplan
+        run: cd infra && terraform plan -var="suscription_id=${{ secrets.SUSCRIPTION_ID }}" -no-color -out main.tfplan # Remove SQL vars
 
       - name: Create String Output
         id: tf-plan-string
         run: |
           TERRAFORM_PLAN=$(cd infra && terraform show -no-color main.tfplan)
-
           delimiter="$(openssl rand -hex 8)"
           echo "summary<<${delimiter}" >> $GITHUB_OUTPUT
           echo "## Terraform Plan Output" >> $GITHUB_OUTPUT
@@ -61,13 +46,11 @@ jobs:
           echo '```' >> $GITHUB_OUTPUT
           echo "</details>" >> $GITHUB_OUTPUT
           echo "${delimiter}" >> $GITHUB_OUTPUT
-
       - name: Publish Terraform Plan to Task Summary
         env:
           SUMMARY: ${{ steps.tf-plan-string.outputs.summary }}
         run: |
           echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
-
       - name: Outputs
         id: vars
         run: |
@@ -80,7 +63,6 @@ jobs:
             echo "arch=arm64" >> $GITHUB_OUTPUT
             ;;
           esac
-
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
@@ -92,28 +74,25 @@ jobs:
           tar -xzvf /tmp/terramaid.tar.gz -C /tmp
           mv -v /tmp/Terramaid /usr/local/bin/terramaid
           chmod +x /usr/local/bin/terramaid
-
       - name: Terramaid
         id: terramaid
         run: |
           cd infra
           /usr/local/bin/terramaid run
-
       - name: Publish graph in step comment
         run: |
           echo "## Terramaid Graph" >> $GITHUB_STEP_SUMMARY
           cat infra/Terramaid.md >> $GITHUB_STEP_SUMMARY
-
       - name: Setup Graphviz
         uses: ts-graphviz/setup-graphviz@v2
 
-      - name: Setup Inframap
+      - name: Setup inframap
         run: |
           curl -L -o /tmp/inframap.tar.gz "https://github.com/cycloidio/inframap/releases/download/v0.7.0/inframap-linux-amd64.tar.gz"
           tar -xzvf /tmp/inframap.tar.gz -C /tmp
           mv -v /tmp/inframap-linux-amd64 /usr/local/bin/inframap
           chmod +x /usr/local/bin/inframap
-      - name: Inframap
+      - name: inframap
         run: |
           cd infra
           /usr/local/bin/inframap generate main.tf --raw | dot -Tsvg > inframap_azure.svg
@@ -124,27 +103,26 @@ jobs:
           name: inframap_azure.svg
           path: infra/inframap_azure.svg
 
-      - name: Setup Infracost
+      - name: Setup infracost
         uses: infracost/actions/setup@v3
         with:
           api-key: ${{ secrets.INFRACOST_API_KEY }}
-      - name: Infracost
+      - name: infracost
         run: |
           cd infra
           infracost breakdown --path . --format html --out-file infracost-report.html
-
+          sed -i '19,137d' infracost-report.html
+          sed -i 's/$0/$ 0/g' infracost-report.html
       - name: Convert HTML to Markdown
         id: html2markdown
         uses: rknj/html2markdown@v1.1.0
         with:
           html-file: "infra/infracost-report.html"
-
       - name: Upload infracost report
         run: |
-          echo "## Infracost Report" >> $GITHUB_STEP_SUMMARY
+          echo "## infracost Report" >> $GITHUB_STEP_SUMMARY
           echo "${{ steps.html2markdown.outputs.markdown-content }}" >> infracost.md
           cat infracost.md >> $GITHUB_STEP_SUMMARY
-
       - name: Terraform Apply
         run: |
           cd infra
