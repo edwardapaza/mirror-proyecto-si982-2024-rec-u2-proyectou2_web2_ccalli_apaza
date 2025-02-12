@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copiar el resto de los archivos y compilar la aplicación
-COPY Animalia/. ./
+COPY src/. ./
 RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
