@@ -1,6 +1,6 @@
-﻿![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.001.png)
+﻿![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.001.png)
 
-**UNIVERSIDAD PRIVADA DE TACNA ![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.002.png)**
+**UNIVERSIDAD PRIVADA DE TACNA ![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.002.png)**
 
 **FACULTAD DE INGENIERIA** 
 
@@ -17,11 +17,11 @@ Integrantes:
 
 **Tacna – Perú *2025*** 
 
-Universidad Privada de Tacna   ![ref1]![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.004.png)![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.005.png)![ref2]![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.007.png)![ref2]![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.008.png)![ref2]![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.009.png)![ref2]![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.010.png)
+Universidad Privada de Tacna   ![ref1]![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.004.png)![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.005.png)![ref2]![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.007.png)![ref2]![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.008.png)![ref2]![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.009.png)![ref2]![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.010.png)
 
-Facultad de Ingeniería![ref2]   ![ref3]![ref2]![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.011.png)![ref2]![ref4]
+Facultad de Ingeniería![ref2]   ![ref3]![ref2]![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.011.png)![ref2]![ref4]
 
-Escuela Profesional de Ingeniería de Sistemas![ref2]   ![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.013.png)![ref2]![ref3]![ref2]![ref4]![ref2]![ref3]![ref2]![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.014.png)![ref2]![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.009.png)
+Escuela Profesional de Ingeniería de Sistemas![ref2]   ![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.013.png)![ref2]![ref3]![ref2]![ref4]![ref2]![ref3]![ref2]![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.014.png)![ref2]![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.009.png)
 |CONTROL DE VERSIONES ||||||
 | - | :- | :- | :- | :- | :- |
 |Versión |Hecha por |Revisada por |Aprobada por |Fecha |Motivo |
@@ -99,7 +99,7 @@ El sistema de gestión veterinaria surge como una necesidad ante las deficiencia
 - Planificación detallada de actividades mediante diagrama de Gantt. 
 - Fases de análisis, diseño, desarrollo, pruebas e implementación. 
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.015.jpeg)
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.015.jpeg)
 
 7. **Presupuesto** 
 - Estimación de costos en desarrollo de software. 
@@ -110,7 +110,7 @@ El sistema de gestión veterinaria surge como una necesidad ante las deficiencia
 - Impacto positivo en la eficiencia y reducción de errores administrativos. 
 - Potencial de escalabilidad y mejoras futuras. 
 9. **Recomendaciones** 
-- Sugerencias para la optimización del sistema a largo plazo. ![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.016.png)
+- Sugerencias para la optimización del sistema a largo plazo. ![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.016.png)
 - Evaluación periódica de la funcionalidad y rendimiento. 
 10. **Bibliografía** 
 - Smith, J. (2020). *Veterinary Management Systems: A Digital Approach.* Springer. DOI: 10.1007/s00134-020-06134 
@@ -180,7 +180,7 @@ El sistema cubrirá funcionalidades como:
 - Notificaciones automáticas de recordatorio. 
 - Almacenamiento y consulta de historiales médicos de mascotas. 
 
-Estas características permitirán a veterinarias y dueños de mascotas optimizar sus procesos y mejorar la comunicación. ![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.017.png)
+Estas características permitirán a veterinarias y dueños de mascotas optimizar sus procesos y mejorar la comunicación. ![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.017.png)
 
 **Visión General** 
 
@@ -212,11 +212,11 @@ Las veterinarias enfrentan dificultades para mantener registros organizados y en
 
 **Diagrama de Caso de Uso: ![ref1]**
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.018.jpeg)
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.018.jpeg)
 
 **Diagrama de Paquetes:** 
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.019.png)![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.020.png)
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.019.png)![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.020.png)
 
 **Escenario de Caso de Uso (Narrativa):** 
 
@@ -246,38 +246,38 @@ Las veterinarias enfrentan dificultades para mantener registros organizados y en
 
 **Diagrama de Actividades con Objetos: ![ref1]**
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.021.jpeg)
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.021.jpeg)
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.022.jpeg)![ref1]
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.022.jpeg)![ref1]
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.023.jpeg)![ref1]
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.023.jpeg)![ref1]
 
 **Diagrama con Objetos** 
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.024.png)![ref1]
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.024.png)![ref1]
 
 **Diagrama de Clases:**  
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.025.jpeg)![ref1]
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.025.jpeg)![ref1]
 
 **Diagrama de Base de Datos:** 
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.026.jpeg)![ref1]
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.026.jpeg)![ref1]
 
 **Diagrama de Arquitectura ( Vista de DISEÑO)** 
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.027.jpeg)![ref1]
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.027.jpeg)![ref1]
 
 **Diagrama de Componentes:**  
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.028.png)![ref1]
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.028.png)![ref1]
 
 **Diagrama de Actividades:**  
 
-![](img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.029.png)
+![](img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.029.png)
 18 
 
-[ref1]: img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.003.png
-[ref2]: img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.006.png
-[ref3]: img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.008.png
-[ref4]: img/Aspose.Words.dcb67310-01ab-49ae-a6c5-fd21f2a95c72.012.png
+[ref1]: img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.003.png
+[ref2]: img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.006.png
+[ref3]: img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.008.png
+[ref4]: img/Aspse.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.012.png
