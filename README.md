@@ -1,65 +1,4 @@
-﻿**UNIVERSIDAD PRIVADA DE TACNA ![]**
-
-**FACULTAD DE INGENIERIA** 
-
-**Escuela Profesional de Ingeniería de Sistemas** 
-
-` `**Proyecto *“Sistema Web de Gestión Veterinaria para Mascotas”*** 
-
-Curso: *Programación Web II* 
-Docente: *Ing. Patrick Cuadros Quiroga* 
-
-Integrantes: 
-
-***Ccalli Chata, Joel Robert   (2017057528) Apaza Mamani, Edward Hernan    (2018060915)*** 
-
-**Tacna – Perú *2025*** 
-
-Universidad Privada de Tacna   ![ref1]![]![]![ref2]![]![ref2]![]![ref2]![]![ref2]![]
-
-Facultad de Ingeniería![ref2]   ![ref3]![ref2]![]![ref2]![ref4]
-
-Escuela Profesional de Ingeniería de Sistemas![ref2]   ![]![ref2]![ref3]![ref2]![ref4]![ref2]![ref3]![ref2]![]![ref2]![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.009.png)
-|CONTROL DE VERSIONES ||||||
-| - | :- | :- | :- | :- | :- |
-|Versión |Hecha por |Revisada por |Aprobada por |Fecha |Motivo |
-|1\.0 |JCC,EPM |JCC,EPM |JCC,EPM |11/02/2025 |Versión Original |
-
-**INDICE GENERAL** 
-
-1. Antecedentes  1 
-1. Planteamiento del Problema  4 
-   1. Problema 
-   1. Justificación 
-   1. Alcance 
-1. Objetivos   6 
-1. Marco Teórico 
-1. Desarrollo de la Solución   9 
-1. Análisis de Factibilidad (técnico, económica, operativa, social, legal, ambiental) 
-1. Tecnología de Desarrollo 
-1. Metodología de implementación 
-
-   (Documento de VISION, SRS, SAD) 
-
-6. Cronograma  11 
-6. Presupuesto  12 
-6. Conclusiones  13 
-
-Recomendaciones  14 Bibliografía  15 Anexos  16 Anexo 01 Informe de Factiblidad 
-
-Anex0 02   Documento de Visión 
-
-Anexo 03 Documento SRS 
-
-Anexo 04 Documento SAD 
-
-Anexo 05 Manuales y otros documentos 
-
-**Sistema *Web de Gestión Veterinaria para Mascotas* Documento de Informe Final ![ref1]**
-
-Versión *1.0* 
-
-1. **Antecedentes ![ref1]**
+﻿1. **Antecedentes** 
 
 El sistema de gestión veterinaria surge como una necesidad ante las deficiencias en el manejo de historiales clínicos, control de inventarios y administración de citas en clínicas veterinarias. La falta de digitalización y la gestión manual generan errores, retrasos y pérdida de información. Este proyecto busca optimizar la administración de las clínicas veterinarias mediante un software eficiente y automatizado. 
 
@@ -87,7 +26,8 @@ El sistema de gestión veterinaria surge como una necesidad ante las deficiencia
   - Evaluación legal: Cumplimiento de normativas sobre datos clínicos. 
   - Evaluación ambiental: Uso responsable de recursos digitales. 
 - **b. Tecnología de Desarrollo**: 
-- Lenguajes de programación: ASP.NET/SQL SERVER para backend ![ref1]
+- Lenguajes de programación: ASP.NET/SQL SERVER para backend 
+
 - Base de datos: SQL SERVER para almacenamiento de información. 
 - Infraestructura: Implementación en la nube para accesibilidad y seguridad. 
 - **c. Metodología de Implementación**: 
@@ -97,7 +37,7 @@ El sistema de gestión veterinaria surge como una necesidad ante las deficiencia
 - Planificación detallada de actividades mediante diagrama de Gantt. 
 - Fases de análisis, diseño, desarrollo, pruebas e implementación. 
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.015.jpeg)
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.001.jpeg)
 
 7. **Presupuesto** 
 - Estimación de costos en desarrollo de software. 
@@ -108,7 +48,7 @@ El sistema de gestión veterinaria surge como una necesidad ante las deficiencia
 - Impacto positivo en la eficiencia y reducción de errores administrativos. 
 - Potencial de escalabilidad y mejoras futuras. 
 9. **Recomendaciones** 
-- Sugerencias para la optimización del sistema a largo plazo. ![]
+- Sugerencias para la optimización del sistema a largo plazo. 
 - Evaluación periódica de la funcionalidad y rendimiento. 
 10. **Bibliografía** 
 - Smith, J. (2020). *Veterinary Management Systems: A Digital Approach.* Springer. DOI: 10.1007/s00134-020-06134 
@@ -123,7 +63,7 @@ El sistema de gestión veterinaria surge como una necesidad ante las deficiencia
 
 **ANEXO 01 Factibilidad Económica** 
 
-**Costos Generales** 
+**Costos Generales ![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.002.png)**
 
 
 
@@ -149,7 +89,6 @@ El sistema de gestión veterinaria surge como una necesidad ante las deficiencia
 |**Rol** |**Cantidad**|**Salario Mensual (S/.)** |**Duración (Meses)** |**Costo Total (S/.)** |
 | - | - | :-: | - | :-: |
 |Desarrollador Backend |1 |1,200 |2 |2,400 |
-|**Rol** |**Cantidad**|**Salario Mensual (S/.)** |**Duración (Meses)** |**Costo Total (S/.)** |
 |Desarrollador Frontend |1 |1,200 |2 |2,400 |
 
 **Costos Totales** 
@@ -163,11 +102,17 @@ El sistema de gestión veterinaria surge como una necesidad ante las deficiencia
 |Costos de Personal|` `4,800 |
 |**Total** |**8,300** |
 
+**Criterios de Inversión ![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.003.png)**
 
+- **Relación Beneficio/Costo (B/C):** 2.5 (viable). 
+- **Valor Actual Neto (VAN):** S/. 10,000 (positivo). 
+- **Tasa Interna de Retorno (TIR):** 25% (rentable). ![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.004.png)
 
-|<p>**Criterios de Inversión** </p><p>- **Relación Beneficio/Costo (B/C):** 2.5 (viable). </p><p>- **Valor Actual Neto (VAN):** S/. 10,000 (positivo). </p><p>- **Tasa Interna de Retorno (TIR):** 25% (rentable). </p>|
-| - |
-|<p>**ANEXO 02 VISION:** </p><p>**Propósito** </p><p>El presente documento describe la planificación y el visionamiento del "Sistema Web de Gestión Veterinaria para Mascotas". Este proyecto busca detallar las oportunidades de negocio, las necesidades de los usuarios y las características clave del producto, brindando una solución innovadora para la gestión de servicios veterinarios. </p>|
+**ANEXO 02 VISION:** 
+
+**Propósito** 
+
+El presente documento describe la planificación y el visionamiento del "Sistema Web de Gestión Veterinaria para Mascotas". Este proyecto busca detallar las oportunidades de negocio, las necesidades de los usuarios y las características clave del producto, brindando una solución innovadora para la gestión de servicios veterinarios. ![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.005.png)
 
 **Alcance** 
 
@@ -178,11 +123,11 @@ El sistema cubrirá funcionalidades como:
 - Notificaciones automáticas de recordatorio. 
 - Almacenamiento y consulta de historiales médicos de mascotas. 
 
-Estas características permitirán a veterinarias y dueños de mascotas optimizar sus procesos y mejorar la comunicación. ![]
+Estas características permitirán a veterinarias y dueños de mascotas optimizar sus procesos y mejorar la comunicación. ![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.006.png)
 
 **Visión General** 
 
-El "Sistema Web de Gestión Veterinaria para Mascotas" busca digitalizar y centralizar las operaciones de las veterinarias, garantizando una experiencia ágil y confiable tanto para los usuarios como para los profesionales veterinarios. Este sistema será una herramienta indispensable para la optimización de procesos y la fidelización de clientes. 
+El "Sistema Web de Gestión Veterinaria para Mascotas" busca digitalizar y centralizar las operaciones de las veterinarias, garantizando una experiencia ágil y confiable tanto para los usuarios como para los profesionales veterinarios. Este sistema será una herramienta indispensable para la optimización de procesos y la fidelización de clientes. ![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.007.png)
 
 **Posicionamiento** 
 
@@ -192,7 +137,7 @@ El mercado veterinario en Tacna, Perú, carece de herramientas digitales moderna
 
 - Mejore la eficiencia operativa. 
 - Reduzca tiempos de gestión manual. 
-- Aumente la satisfacción del cliente y fomente la fidelización. 
+- Aumente la satisfacción del cliente y fomente la fidelización. ![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.008.png)
 
 **Definición del Problema** 
 
@@ -208,17 +153,17 @@ Las veterinarias enfrentan dificultades para mantener registros organizados y en
 
 **ANEXO 03 – SRS:** 
 
-**Diagrama de Caso de Uso: ![ref1]**
+**Diagrama de Caso de Uso:** 
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.018.jpeg)
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.009.jpeg)
 
 **Diagrama de Paquetes:** 
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.019.png)![]
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.010.jpeg)
 
 **Escenario de Caso de Uso (Narrativa):** 
 
-**Caso de Uso  Registrar Usuario Actor Principal**  Usuario 
+**Caso de Uso  Registrar Usuario ![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.011.png)Actor Principal**  Usuario 
 
 **Precondición**  El usuario debe no estar registrado previamente. 
 
@@ -230,7 +175,7 @@ Las veterinarias enfrentan dificultades para mantener registros organizados y en
 
 **Flujo**  1A. Si falta información en el formulario, el sistema muestra un **Alternativo**  mensaje de error. 
 
-**Postcondición**  El usuario está registrado en el sistema y puede iniciar sesión. 
+**Postcondición**  El usuario está registrado en el sistema y puede iniciar sesión. ![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.012.png)
 
 
 
@@ -242,37 +187,35 @@ Las veterinarias enfrentan dificultades para mantener registros organizados y en
 |**Flujo Alternativo** |1A. Si las credenciales son incorrectas, el sistema muestra un mensaje de error. |
 |**Postcondición** |El usuario accede a su cuenta. |
 
-**Diagrama de Actividades con Objetos: ![ref1]**
+**Diagrama de Actividades con Objetos:** 
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.021.jpeg)
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.013.jpeg)
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.022.jpeg)![ref1]
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.014.jpeg)
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.023.jpeg)![ref1]
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.015.jpeg)
 
 **Diagrama con Objetos** 
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.024.png)![ref1]
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.016.jpeg)
 
 **Diagrama de Clases:**  
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.025.jpeg)![ref1]
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.017.jpeg)
 
 **Diagrama de Base de Datos:** 
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.026.jpeg)![ref1]
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.018.jpeg)
 
 **Diagrama de Arquitectura ( Vista de DISEÑO)** 
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.027.jpeg)![ref1]
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.019.jpeg)
 
 **Diagrama de Componentes:**  
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.028.png)![ref1]
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.020.jpeg)
 
 **Diagrama de Actividades:**  
 
-![](Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.029.png)
-18 
-
-[ref3]: Aspose.Words.a97d5f5c-cc8c-4b0f-926d-6e35b86d5104.008.png
+![](img/aspose.Words.2e46135b-7d25-48a0-a53c-90bf4435b955.021.jpeg)
+15 
