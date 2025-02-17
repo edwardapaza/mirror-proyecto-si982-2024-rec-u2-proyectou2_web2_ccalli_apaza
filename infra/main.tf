@@ -77,7 +77,7 @@ resource "azurerm_mssql_firewall_rule" "sqlaccessrule" {
 }
 
 resource "azurerm_mssql_database" "sqldb" {
-  name      = "shorten"
+  name      = "Animalia"
   server_id = azurerm_mssql_server.sqlsrv.id
   sku_name = "Free"
 }
