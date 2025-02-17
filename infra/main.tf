@@ -13,6 +13,16 @@ variable "suscription_id" {
   description = "452059b4-1dbe-460c-9ef6-85738d616b22"
 }
 
+variable "sqladmin_username" {
+    type = string
+    description = "Administrator username for server"
+}
+
+variable "sqladmin_password" {
+    type = string
+    description = "Administrator password for server"
+}
+
 provider "azurerm" {
   features {}
   subscription_id = var.suscription_id
@@ -50,11 +60,24 @@ resource "azurerm_linux_web_app" "webapp" {
   }
 }
 
-# Recurso para configurar el control de código fuente en Azure App Service
-# resource "azurerm_app_service_source_control" "app_service_source_control" {
-#   app_id = azurerm_linux_web_app.webapp.id  # ID de la App Service
-#   repo_url = "https://github.com/UPT-FAING-EPIS/proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"  # URL del repositorio
-#   branch = "main"  # Rama a desplegar
-#   use_manual_integration = false  # Integración automática
-#   use_mercurial = false  # No usar Mercurial (Git es el predeterminado)
-# }
+resource "azurerm_mssql_server" "sqlsrv" {
+  name                         = "upt-dbs-animalia"
+  resource_group_name          = azurerm_resource_group.rg.name
+  location                     = azurerm_resource_group.rg.location
+  version                      = "12.0"
+  administrator_login          = var.sqladmin_username
+  administrator_login_password = var.sqladmin_password
+}
+
+resource "azurerm_mssql_firewall_rule" "sqlaccessrule" {
+  name             = "PublicAccess"
+  server_id        = azurerm_mssql_server.sqlsrv.id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "255.255.255.255"
+}
+
+resource "azurerm_mssql_database" "sqldb" {
+  name      = "shorten"
+  server_id = azurerm_mssql_server.sqlsrv.id
+  sku_name = "Free"
+}
