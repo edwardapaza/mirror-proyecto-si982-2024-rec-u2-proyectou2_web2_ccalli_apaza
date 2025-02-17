@@ -17,6 +17,7 @@ namespace Animalia.Data
         public DbSet<Veterinario> Veterinarios { get; set; }
         public DbSet<vw_ConsultasNotificaciones> vw_ConsultasNotificaciones { get; set; }
         public DbSet<Diagnostico> Diagnosticos { get; set; }
+        public DbSet<Producto> Productos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,6 +55,9 @@ namespace Animalia.Data
                 .HasForeignKey(c => c.IdVeterinario)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Producto>()
+                .Property(p => p.Precio)
+                .HasColumnType("decimal(18, 2)");
             // REMOVE THIS CONFLICTING CONFIGURATION ENTIRELY:
             // modelBuilder.Entity<Diagnostico>()
             //     .HasOne(d => d.Consulta)

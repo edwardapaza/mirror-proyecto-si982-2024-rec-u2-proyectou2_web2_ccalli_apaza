@@ -47,13 +47,9 @@ namespace Animalia.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateDiagnostico(Diagnostico diagnostico)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Diagnosticos.Add(diagnostico);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Informes");
-            }
-            return View("CreateDiagnostico", diagnostico);
+            _context.Diagnosticos.Add(diagnostico);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Informes");
         }
 
         public async Task<IActionResult> GenerarPdfDiagnostico(int idConsulta)

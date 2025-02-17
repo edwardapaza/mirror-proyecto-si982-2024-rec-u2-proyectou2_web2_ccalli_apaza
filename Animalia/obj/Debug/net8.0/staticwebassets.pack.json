@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\Animalia.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Edward\\Desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\wwwroot\\Assets\\login.png",
+      "PackagePath": "staticwebassets\\Assets\\login.png"
+    },
+    {
+      "Id": "C:\\Users\\Edward\\Desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\wwwroot\\Assets\\nav.png",
+      "PackagePath": "staticwebassets\\Assets\\nav.png"
+    },
+    {
       "Id": "C:\\Users\\Edward\\Desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
