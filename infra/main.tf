@@ -31,7 +31,7 @@ provider "azurerm" {
 # Crear el grupo de recursos
 resource "azurerm_resource_group" "rg" {
   name     = "upt-arg-app"
-  location = "southcentralus"
+  location = "westus2"
 }
 
 # Crear el Plan de Servicio de Aplicación
