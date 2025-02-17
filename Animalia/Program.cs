@@ -24,12 +24,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseStaticFiles();
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(Directory.GetCurrentDirectory(), "Assets")),
-    RequestPath = "/Assets"
-});
 
 app.UseRouting();
 app.UseSession();
