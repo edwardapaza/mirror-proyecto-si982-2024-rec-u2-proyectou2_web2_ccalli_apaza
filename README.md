@@ -62,7 +62,7 @@ Desarrollar un sistema de gestión veterinaria que optimice la administración d
 
 | **Elemento** | **Costo (S/.)** |
 |-------------|--------------|
-| Dominio y hosting | 800 |
+| Infraestructura en la nube | 0 |
 | Licencias de software | 600 |
 | Equipos adicionales | 1,200 |
 
