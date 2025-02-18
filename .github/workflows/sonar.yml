@@ -20,18 +20,25 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '8.0.4'
 
       - name: Install SonarScanner
         run: dotnet tool install --global dotnet-sonarscanner
 
+      # Verificar estructura del repo para confirmar la ubicación de los archivos
+      - name: Mostrar estructura del repositorio
+        run: ls -R
+
       - name: Restore Dependencies
-        run: dotnet restore
+        run: |
+          cd Animalia
+          dotnet restore
 
       - name: Run SonarQube Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
+          cd Animalia
           dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT }}" /o:"${{ secrets.SONAR_ORG }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --no-restore
           dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
