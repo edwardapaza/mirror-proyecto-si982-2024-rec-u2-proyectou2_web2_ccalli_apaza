@@ -20,7 +20,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0'
+          dotnet-version: '8.0.x'
 
       - name: Install SonarScanner & Coverlet
         run: |
@@ -35,17 +35,21 @@ jobs:
       - name: Run Tests with Coverage
         run: |
           cd Animalia
-          dotnet test --collect:"XPlat Code Coverage"
+          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=TestResults/coverage.cobertura.xml
+          ls -R TestResults || echo "No coverage generated!"
 
       - name: Convert Coverage to XML
         run: |
           cd Animalia
-          reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:Cobertura
+          reportgenerator -reports:TestResults/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:Cobertura
 
       - name: Convert Coverage to Markdown
         run: |
           cd Animalia
-          reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:MarkdownSummary
+          reportgenerator -reports:TestResults/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:MarkdownSummary
+
+      - name: Show Coverage Report
+        run: cat Animalia/coveragereport/Summary.md || echo "No coverage summary found!"
 
       - name: Publish Coverage to GitHub Actions Summary
         run: cat Animalia/coveragereport/Summary.md >> $GITHUB_STEP_SUMMARY
@@ -53,6 +57,6 @@ jobs:
       - name: Run SonarQube Analysis
         run: |
           cd Animalia
-          dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT }}" /o:"${{ secrets.SONAR_ORG }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="coverage.cobertura.xml"
+          dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT }}" /o:"${{ secrets.SONAR_ORG }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="TestResults/coverage.cobertura.xml"
           dotnet build --no-restore
           dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
