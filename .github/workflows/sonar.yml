@@ -26,13 +26,12 @@ jobs:
         run: dotnet tool install --global dotnet-sonarscanner
 
       - name: Restore Dependencies
-        run: |
-          cd src
-          dotnet restore
+        run: dotnet restore
 
       - name: Run SonarQube Analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          cd src
           dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT }}" /o:"${{ secrets.SONAR_ORG }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --no-restore
           dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
