@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\animalia\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\animalia\\testresults\\2e74c7dd-9fef-4ec0-9dc6-786766bf8510\\coverage.cobertura.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:testresults\\2e74c7dd-9fef-4ec0-9dc6-786766bf8510\\coverage.cobertura.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\animalia\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\animalia\\controllers\\informescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:controllers\\informescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\animalia\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{60A37DFE-98E4-4092-8C58-F21972B09C4A}|Animalia.csproj|c:\\users\\edward\\desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\animalia\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -30,11 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "coverage.cobertura.xml",
               "DocumentMoniker": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\TestResults\\2e74c7dd-9fef-4ec0-9dc6-786766bf8510\\coverage.cobertura.xml",
               "RelativeDocumentMoniker": "TestResults\\2e74c7dd-9fef-4ec0-9dc6-786766bf8510\\coverage.cobertura.xml",
@@ -59,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -67,24 +63,12 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-18T13:51:29.972Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T13:38:11.962Z",
+              "WhenOpened": "2025-02-18T13:51:29.972Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Views\\Login\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Login\\Index.cshtml",
