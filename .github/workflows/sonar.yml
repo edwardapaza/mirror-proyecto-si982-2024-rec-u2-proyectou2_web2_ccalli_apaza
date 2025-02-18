@@ -35,13 +35,28 @@ jobs:
       - name: Run Tests with Coverage
         run: |
           cd Animalia
-          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=TestResults/coverage.cobertura.xml
-          ls -R TestResults || echo "No coverage generated!"
+          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
 
-      - name: Convert Coverage to XML
+      - name: Verificar TestResults
         run: |
           cd Animalia
-          reportgenerator -reports:TestResults/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:Cobertura
+          ls -R TestResults || echo "No se encontró la carpeta TestResults"
+
+      - name: Buscar el archivo de cobertura
+        run: |
+          cd Animalia
+          find . -name "coverage.cobertura.xml" || echo "No se encontró el archivo de cobertura"
+
+      - name: Mover el archivo de cobertura si está en un subdirectorio
+        run: |
+          cd Animalia
+          COV_FILE=$(find TestResults -name "coverage.cobertura.xml" | head -n 1)
+          if [[ -f "$COV_FILE" ]]; then
+            mv "$COV_FILE" TestResults/coverage.cobertura.xml
+          else
+            echo "No se encontró coverage.cobertura.xml"
+            exit 1
+          fi
 
       - name: Convert Coverage to Markdown
         run: |
