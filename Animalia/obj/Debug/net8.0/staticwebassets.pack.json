@@ -5,6 +5,18 @@
       "PackagePath": "staticwebassets\\Animalia.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Edward\\Desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\wwwroot\\Assets\\Helvetica-Bold.ttf",
+      "PackagePath": "staticwebassets\\Assets\\Helvetica-Bold.ttf"
+    },
+    {
+      "Id": "C:\\Users\\Edward\\Desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\wwwroot\\Assets\\Helvetica-BoldOblique.ttf",
+      "PackagePath": "staticwebassets\\Assets\\Helvetica-BoldOblique.ttf"
+    },
+    {
+      "Id": "C:\\Users\\Edward\\Desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\wwwroot\\Assets\\Helvetica.ttf",
+      "PackagePath": "staticwebassets\\Assets\\Helvetica.ttf"
+    },
+    {
       "Id": "C:\\Users\\Edward\\Desktop\\proyecto\\proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\wwwroot\\Assets\\login.png",
       "PackagePath": "staticwebassets\\Assets\\login.png"
     },

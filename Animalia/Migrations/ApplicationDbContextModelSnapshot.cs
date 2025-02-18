@@ -187,38 +187,6 @@ namespace Animalia.Migrations
                     b.ToTable("mascotas", (string)null);
                 });
 
-            modelBuilder.Entity("Animalia.Models.Producto", b =>
-                {
-                    b.Property<int>("IdProducto")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProducto"));
-
-                    b.Property<string>("Categoria")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<decimal>("Precio")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<int>("Stock")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdProducto");
-
-                    b.ToTable("Productos");
-                });
-
             modelBuilder.Entity("Animalia.Models.Usuario", b =>
                 {
                     b.Property<int>("IdUsuario")

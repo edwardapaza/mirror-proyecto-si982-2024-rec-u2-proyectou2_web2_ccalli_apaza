@@ -2,12 +2,16 @@
 using Animalia.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PdfSharp.Pdf;
-using PdfSharp.Drawing;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.Kernel.Colors;
+using iText.Kernel.Font;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using iText.IO.Font;
 
 namespace Animalia.Controllers
 {
@@ -47,9 +51,13 @@ namespace Animalia.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateDiagnostico(Diagnostico diagnostico)
         {
-            _context.Diagnosticos.Add(diagnostico);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Informes");
+            if (ModelState.IsValid)
+            {
+                _context.Diagnosticos.Add(diagnostico);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Informes");
+            }
+            return View("CreateDiagnostico", diagnostico);
         }
 
         public async Task<IActionResult> GenerarPdfDiagnostico(int idConsulta)
@@ -65,60 +73,129 @@ namespace Animalia.Controllers
                 return NotFound();
             }
 
-            PdfDocument document = new PdfDocument();
-            PdfPage page = document.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-
-            XFont titleFont = new XFont("Verdana", 18, XFontStyleEx.Bold);
-            XFont headingFont = new XFont("Verdana", 14, XFontStyleEx.Italic);
-            XFont normalFont = new XFont("Verdana", 12, XFontStyleEx.Regular);
-            XColor primaryColor = XColors.DarkSlateGray;
-            XColor secondaryColor = XColors.Gray;
-
-            double yPosition = 20;
-            double xPosition = 20;
-            double lineSpace = 20;
-
-            void DrawFormattedText(string text, XFont font, XColor color)
+            // Configuración del PDF con iText 7
+            using (var stream = new MemoryStream())
             {
-                gfx.DrawString(text, font, new XSolidBrush(color), new XRect(xPosition, yPosition, page.Width - 40, 30), XStringFormats.TopLeft);
-                yPosition += lineSpace;
+                PdfWriter writer = new PdfWriter(stream);
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf);
+
+                // Rutas a tus fuentes desde wwwroot/Assets
+                string helveticaBoldPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Assets", "Helvetica-Bold.ttf");
+                string helveticaBoldObliquePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Assets", "Helvetica-BoldOblique.ttf");
+                string helveticaPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Assets", "Helvetica.ttf");
+
+
+                // Fuentes y colores -  Cargando las fuentes desde archivos .ttf
+                PdfFont titleFont = PdfFontFactory.CreateFont(helveticaBoldPath, PdfEncodings.WINANSI);
+                PdfFont headingFont = PdfFontFactory.CreateFont(helveticaBoldObliquePath, PdfEncodings.WINANSI);
+                PdfFont normalFont = PdfFontFactory.CreateFont(helveticaPath, PdfEncodings.WINANSI);
+                Color primaryColor = new DeviceRgb(47, 79, 79);
+                Color secondaryColor = new DeviceRgb(128, 128, 128);
+
+                // Título
+                document.Add(new Paragraph("Informe de Diagnóstico Veterinario")
+                    .SetFont(titleFont)
+                    .SetFontSize(18)
+                    .SetFontColor(primaryColor)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetMarginBottom(20));
+
+                // Información de la Consulta
+                document.Add(new Paragraph("Información de la Consulta")
+                    .SetFont(headingFont)
+                    .SetFontSize(14)
+                    .SetFontColor(primaryColor)
+                    .SetMarginBottom(10));
+
+                document.Add(new Paragraph($"ID Consulta: {consulta.IdConsulta}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+                document.Add(new Paragraph($"Fecha: {consulta.Fecha.ToShortDateString()}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+                document.Add(new Paragraph($"Hora: {consulta.Hora}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor))
+                    .SetBottomMargin(20);
+
+                // Información del Cliente
+                document.Add(new Paragraph("Información del Cliente")
+                    .SetFont(headingFont)
+                    .SetFontSize(14)
+                    .SetFontColor(primaryColor)
+                    .SetMarginBottom(10));
+
+                document.Add(new Paragraph($"Cliente: {consulta.Mascota.Cliente.Nombre}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor))
+                    .SetBottomMargin(20);
+
+                // Información de la Mascota
+                document.Add(new Paragraph("Información de la Mascota")
+                    .SetFont(headingFont)
+                    .SetFontSize(14)
+                    .SetFontColor(primaryColor)
+                    .SetMarginBottom(10));
+
+                document.Add(new Paragraph($"Nombre: {consulta.Mascota.Nombre}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+                document.Add(new Paragraph($"Especie: {consulta.Mascota.Especie}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+                document.Add(new Paragraph($"Raza: {consulta.Mascota.Raza}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+                document.Add(new Paragraph($"Edad: {consulta.Mascota.Edad} años")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+                document.Add(new Paragraph($"Color: {consulta.Mascota.Color}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor))
+                    .SetBottomMargin(20);
+
+                document.Add(new Paragraph("Diagnóstico Veterinario")
+                    .SetFont(headingFont)
+                    .SetFontSize(14)
+                    .SetFontColor(primaryColor)
+                    .SetMarginBottom(10));
+
+                document.Add(new Paragraph($"Peso: {consulta.Diagnostico.Peso} kg")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+                document.Add(new Paragraph($"Observaciones: {consulta.Diagnostico.Observaciones}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+                document.Add(new Paragraph($"Exámenes Realizados: {consulta.Diagnostico.ExamenesRealizados}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+                document.Add(new Paragraph($"Diagnóstico General: {consulta.Diagnostico.DiagnosticoGeneral}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+                document.Add(new Paragraph($"Fecha de Creación del Diagnóstico: {consulta.Diagnostico.FechaCreacion.ToString(CultureInfo.CurrentCulture)}")
+                    .SetFont(normalFont)
+                    .SetFontSize(12)
+                    .SetFontColor(secondaryColor));
+
+                document.Close();
+
+                byte[] pdfBytes = stream.ToArray();
+                return File(pdfBytes, "application/pdf", $"Diagnostico_{consulta.IdConsulta}.pdf");
             }
-
-            DrawFormattedText("Informe de Diagnóstico Veterinario", titleFont, primaryColor);
-            yPosition += lineSpace;
-
-            DrawFormattedText("Información de la Consulta", headingFont, primaryColor);
-            DrawFormattedText($"ID Consulta: {consulta.IdConsulta}", normalFont, secondaryColor);
-            DrawFormattedText($"Fecha: {consulta.Fecha.ToShortDateString()}", normalFont, secondaryColor);
-            DrawFormattedText($"Hora: {consulta.Hora}", normalFont, secondaryColor);
-            yPosition += lineSpace;
-
-            DrawFormattedText("Información del Cliente", headingFont, primaryColor);
-            DrawFormattedText($"Cliente: {consulta.Mascota.Cliente.Nombre}", normalFont, secondaryColor);
-            yPosition += lineSpace;
-
-            DrawFormattedText("Información de la Mascota", headingFont, primaryColor);
-            DrawFormattedText($"Nombre: {consulta.Mascota.Nombre}", normalFont, secondaryColor);
-            DrawFormattedText($"Especie: {consulta.Mascota.Especie}", normalFont, secondaryColor);
-            DrawFormattedText($"Raza: {consulta.Mascota.Raza}", normalFont, secondaryColor);
-            DrawFormattedText($"Edad: {consulta.Mascota.Edad} años", normalFont, secondaryColor);
-            DrawFormattedText($"Color: {consulta.Mascota.Color}", normalFont, secondaryColor);
-            yPosition += lineSpace;
-
-            DrawFormattedText("Diagnóstico Veterinario", headingFont, primaryColor);
-            DrawFormattedText($"Peso: {consulta.Diagnostico.Peso} kg", normalFont, secondaryColor);
-            DrawFormattedText($"Observaciones: {consulta.Diagnostico.Observaciones}", normalFont, secondaryColor);
-            DrawFormattedText($"Exámenes Realizados: {consulta.Diagnostico.ExamenesRealizados}", normalFont, secondaryColor);
-            DrawFormattedText($"Diagnóstico General: {consulta.Diagnostico.DiagnosticoGeneral}", normalFont, secondaryColor);
-            DrawFormattedText($"Fecha de Creación del Diagnóstico: {consulta.Diagnostico.FechaCreacion.ToString(CultureInfo.CurrentCulture)}", normalFont, secondaryColor);
-
-
-            MemoryStream stream = new MemoryStream();
-            document.Save(stream);
-            byte[] pdfBytes = stream.ToArray();
-
-            return File(pdfBytes, "application/pdf", $"Diagnostico_{consulta.IdConsulta}.pdf");
         }
     }
 }
