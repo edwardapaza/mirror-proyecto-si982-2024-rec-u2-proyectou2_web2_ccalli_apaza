@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "D68Y/fMm6bA=",
+  "dgSpecHash": "qbBHitfXwu8=",
   "success": true,
   "projectFilePath": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Edward\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Edward\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\Edward\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
+    "C:\\Users\\Edward\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\Edward\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Edward\\.nuget\\packages\\itext\\9.1.0\\itext.9.1.0.nupkg.sha512",
     "C:\\Users\\Edward\\.nuget\\packages\\itext.bouncy-castle-adapter\\9.1.0\\itext.bouncy-castle-adapter.9.1.0.nupkg.sha512",

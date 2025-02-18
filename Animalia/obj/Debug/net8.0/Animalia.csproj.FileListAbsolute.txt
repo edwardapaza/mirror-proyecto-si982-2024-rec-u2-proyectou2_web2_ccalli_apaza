@@ -1,11 +1,6 @@
 C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\testhost.dll
 C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\xunit.abstractions.dll
 C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\testhost.exe
-C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\Animalia.Tests\bin\Debug\net8.0\Animalia.Tests.deps.json
-C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\Animalia.Tests\bin\Debug\net8.0\Animalia.Tests.runtimeconfig.json
-C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\Animalia.Tests\obj\Animalia.Tests.csproj.nuget.dgspec.json
-C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\Animalia.Tests\obj\Debug\net8.0\Animalia.Tests.sourcelink.json
-C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\Animalia.Tests\obj\project.assets.json
 C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\appsettings.json
 C:\Users\Edward\Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\bin\Debug\net8.0\Animalia.staticwebassets.runtime.json
