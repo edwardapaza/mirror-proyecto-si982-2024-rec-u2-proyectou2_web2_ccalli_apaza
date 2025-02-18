@@ -25,10 +25,9 @@ jobs:
       - name: Install SonarScanner and ReportGenerator
         run: |
           dotnet tool install --global dotnet-sonarscanner
-          dotnet tool install --global dotnet-reportgenerator-globaltool
+          dotnet tool update --global dotnet-reportgenerator-globaltool
 
-      # Verificar estructura del repo para confirmar la ubicación de los archivos
-      - name: Mostrar estructura del repositorio
+      - name: Show Repository Structure
         run: ls -R
 
       - name: Restore Dependencies
@@ -41,24 +40,20 @@ jobs:
           cd Animalia
           dotnet test --collect:"XPlat Code Coverage" --results-directory TestResults
 
+      - name: Verify Coverage Report Exists
+        run: |
+          ls -R Animalia/TestResults || echo "No coverage file found!"
+
       - name: Generate Coverage Report
         run: |
           cd Animalia
-          reportgenerator -reports:TestResults/*/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:"CoberturaSummary;SonarQube"
+          reportgenerator -reports:TestResults/*/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:"Cobertura;SonarQube"
 
       - name: Run SonarQube Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           cd Animalia
-          dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT }}" /o:"${{ secrets.SONAR_ORG }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="coveragereport/SonarQube.xml"
+          dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT }}" /o:"${{ secrets.SONAR_ORG }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths="coveragereport/SonarQube.xml"
           dotnet build --no-restore
           dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-
-      - name: Extract Coverage Summary
-        run: |
-          echo "### 📊 Code Coverage Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          cat Animalia/coveragereport/Summary.txt >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
