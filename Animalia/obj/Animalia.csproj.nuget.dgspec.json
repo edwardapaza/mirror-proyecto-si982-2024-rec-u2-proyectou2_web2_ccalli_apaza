@@ -89,6 +89,14 @@
             "itext7.bouncy-castle-adapter": {
               "target": "Package",
               "version": "[9.1.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.3, )"
             }
           },
           "imports": [
