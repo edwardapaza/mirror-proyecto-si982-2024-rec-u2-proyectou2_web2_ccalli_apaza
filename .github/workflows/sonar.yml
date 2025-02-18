@@ -14,41 +14,60 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Paso 1: Checkout del repositorio
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # Paso 2: Configurar .NET Core
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0'
 
-      - name: Install SonarScanner and ReportGenerator
+      # Paso 3: Instalar herramientas necesarias
+      - name: Install Tools
         run: |
           dotnet tool install --global dotnet-sonarscanner
-          dotnet tool update --global dotnet-reportgenerator-globaltool
+          dotnet tool install --global dotnet-reportgenerator-globaltool
 
-      - name: Show Repository Structure
-        run: ls -R
-
+      # Paso 4: Restaurar dependencias
       - name: Restore Dependencies
         run: |
           cd Animalia
           dotnet restore
 
+      # Paso 5: Ejecutar pruebas con cobertura
       - name: Run Tests with Coverage
         run: |
           cd Animalia
           dotnet test --collect:"XPlat Code Coverage" --results-directory TestResults
 
+      # Paso 6: Verificar que el archivo de cobertura existe
       - name: Verify Coverage Report Exists
         run: |
           ls -R Animalia/TestResults || echo "No coverage file found!"
 
-      - name: Generate Coverage Report
-        run: |
-          cd Animalia
-          reportgenerator -reports:TestResults/*/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:"Cobertura;SonarQube"
+      # Paso 7: Generar reporte de cobertura
+      - name: Generar reporte de cobertura
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.3.7
+        with:
+          reports: ./Animalia/TestResults/*/coverage.cobertura.xml  # Ruta del archivo de cobertura
+          targetdir: coveragereport
+          reporttypes: MarkdownSummary;MarkdownAssembliesSummary;MarkdownSummaryGithub
 
+      # Paso 8: Subir el reporte de cobertura como artefacto
+      - name: Subir artefacto del reporte de cobertura
+        uses: actions/upload-artifact@v4
+        with:
+          name: CoverageReport
+          path: coveragereport
+
+      # Paso 9: Publicar el resumen de cobertura en el build
+      - name: Publicar cobertura en el resumen de build
+        run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+        shell: bash
+
+      # Paso 10: Ejecutar análisis de SonarQube
       - name: Run SonarQube Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
