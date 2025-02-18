@@ -18,14 +18,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '8.0'
 
-      - name: Install SonarScanner & Coverlet
+      - name: Install SonarScanner and ReportGenerator
         run: |
           dotnet tool install --global dotnet-sonarscanner
           dotnet tool install --global dotnet-reportgenerator-globaltool
+
+      # Verificar estructura del repo para confirmar la ubicación de los archivos
+      - name: Mostrar estructura del repositorio
+        run: ls -R
 
       - name: Restore Dependencies
         run: |
@@ -35,43 +39,26 @@ jobs:
       - name: Run Tests with Coverage
         run: |
           cd Animalia
-          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+          dotnet test --collect:"XPlat Code Coverage" --results-directory TestResults
 
-      - name: Verificar TestResults
+      - name: Generate Coverage Report
         run: |
           cd Animalia
-          ls -R TestResults || echo "No se encontró la carpeta TestResults"
-
-      - name: Buscar el archivo de cobertura
-        run: |
-          cd Animalia
-          find . -name "coverage.cobertura.xml" || echo "No se encontró el archivo de cobertura"
-
-      - name: Mover el archivo de cobertura si está en un subdirectorio
-        run: |
-          cd Animalia
-          COV_FILE=$(find TestResults -name "coverage.cobertura.xml" | head -n 1)
-          if [[ -f "$COV_FILE" ]]; then
-            mv "$COV_FILE" TestResults/coverage.cobertura.xml
-          else
-            echo "No se encontró coverage.cobertura.xml"
-            exit 1
-          fi
-
-      - name: Convert Coverage to Markdown
-        run: |
-          cd Animalia
-          reportgenerator -reports:TestResults/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:MarkdownSummary
-
-      - name: Show Coverage Report
-        run: cat Animalia/coveragereport/Summary.md || echo "No coverage summary found!"
-
-      - name: Publish Coverage to GitHub Actions Summary
-        run: cat Animalia/coveragereport/Summary.md >> $GITHUB_STEP_SUMMARY
+          reportgenerator -reports:TestResults/*/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:"CoberturaSummary;SonarQube"
 
       - name: Run SonarQube Analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           cd Animalia
-          dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT }}" /o:"${{ secrets.SONAR_ORG }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="TestResults/coverage.cobertura.xml"
+          dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT }}" /o:"${{ secrets.SONAR_ORG }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="coveragereport/SonarQube.xml"
           dotnet build --no-restore
           dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
+      - name: Extract Coverage Summary
+        run: |
+          echo "### 📊 Code Coverage Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          cat Animalia/coveragereport/Summary.txt >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
