@@ -29,11 +29,14 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Install SonarQube Cloud scanner
+      - name: Install SonarQube Scanner
         run: |
           echo "Installing SonarScanner..."
           dotnet tool install --global dotnet-sonarscanner
           echo "SonarScanner installed successfully."
+
+      - name: Verify SonarScanner Installation
+        run: dotnet tool list --global
 
       - name: Build and Analyze with SonarCloud
         env:
@@ -55,12 +58,22 @@ jobs:
           $PROJECT_KEY = "edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"
           $METRICS = "bugs,vulnerabilities,code_smells,duplicated_lines_density,complexity,ncloc,cognitive_complexity,comment_lines_density,security_rating,reliability_rating,sqale_rating"
 
-          Write-Host "Fetching SonarCloud Metrics..."
-          $Headers = @{ Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$($env:SONAR_TOKEN):")) }
-          $RESPONSE = Invoke-RestMethod -Uri "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS" -Headers $Headers -Method Get
+          $REQUEST_URL = "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS"
 
-          if (!$RESPONSE -or $RESPONSE -match "errors") {
-            Write-Host "Error fetching SonarCloud metrics."
+          Write-Host "Fetching SonarCloud Metrics from: $REQUEST_URL"
+
+          $Headers = @{
+            Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$env:SONAR_TOKEN:"))
+          }
+
+          try {
+            $RESPONSE = Invoke-RestMethod -Uri $REQUEST_URL -Headers $Headers -Method Get
+            if (-not $RESPONSE) {
+              Write-Host "Error fetching SonarCloud metrics: Empty response"
+              exit 1
+            }
+          } catch {
+            Write-Host "Error fetching SonarCloud metrics: $_"
             exit 1
           }
 
@@ -70,25 +83,26 @@ jobs:
       - name: Publish SonarCloud Metrics as Summary
         shell: pwsh
         run: |
-          $response = "${{ env.response }}"
-          $markdown = "## 📊 SonarCloud Metrics`n| Metric               | Value   | Icon       |`n|----------------------|---------|------------|"
-
-          $metricsMap = @{
-            "security_rating" = "🛡️ Security Rating"
-            "reliability_rating" = "🔧 Reliability Rating"
-            "sqale_rating" = "♻️ Maintainability"
-            "code_smells" = "🤢 Code Smells"
-            "duplicated_lines_density" = "🔀 Duplications"
-            "cognitive_complexity" = "🧠 Cognitive Complexity"
-            "bugs" = "🐛 Bugs"
-            "comment_lines_density" = "💬 Comment Density"
-          }
-
-          $jsonResponse = $response | ConvertFrom-Json
-          foreach ($measure in $jsonResponse.component.measures) {
-            if ($metricsMap.ContainsKey($measure.metric)) {
-              $markdown += "`n| $($metricsMap[$measure.metric]) | $($measure.value) | |"
+          echo "## 📊 SonarCloud Metrics" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric               | Value   | Icon       |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------------------|---------|------------|" >> $GITHUB_STEP_SUMMARY
+          echo $env:response | ConvertFrom-Json | ForEach-Object {
+            if ($_.component.measures) {
+              $_.component.measures | ForEach-Object {
+                $icon = ""
+                switch ($_.metric) {
+                  "security_rating" { $icon = "🛡️" }
+                  "reliability_rating" { $icon = "🔧" }
+                  "sqale_rating" { $icon = "♻️" }
+                  "code_smells" { $icon = "🤢" }
+                  "duplicated_lines_density" { $icon = "🔀" }
+                  "cognitive_complexity" { $icon = "🧠" }
+                  "bugs" { $icon = "🐛" }
+                  "comment_lines_density" { $icon = "💬" }
+                }
+                echo "| $($_.metric) | $($_.value) | $icon |" >> $GITHUB_STEP_SUMMARY
+              }
             }
           }
-
-          Set-Content -Path $env:GITHUB_STEP_SUMMARY -Value $markdown
+        env:
+          response: ${{ env.response }}
