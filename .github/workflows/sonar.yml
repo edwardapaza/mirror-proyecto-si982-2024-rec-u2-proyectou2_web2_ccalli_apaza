@@ -9,14 +9,22 @@ on:
 
 jobs:
   sonarcloud:
-    name: SonarCloud Analysis
+    name: Build and Analyze with SonarCloud
     runs-on: windows-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Setup .NET 8
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up .NET 8
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
@@ -24,13 +32,17 @@ jobs:
       - name: Install SonarScanner
         run: dotnet tool install --global dotnet-sonarscanner
 
-      - name: Run SonarCloud Analysis
+      - name: Verify SonarScanner Installation
+        run: dotnet tool list --global
+
+      - name: Build and Analyze with SonarCloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           cd Animalia
           dotnet-sonarscanner begin /k:"edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza" /o:"edwardapaza" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build Animalia.sln --configuration Release
+          dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage"
           dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
       - name: Fetch SonarCloud Metrics
@@ -43,14 +55,20 @@ jobs:
           $PROJECT_KEY = "edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"
           $METRICS = "bugs,vulnerabilities,code_smells,duplicated_lines_density,complexity,ncloc,cognitive_complexity,comment_lines_density,security_rating,reliability_rating,sqale_rating"
 
-          Write-Host "Fetching SonarCloud Metrics..."
-          $RESPONSE = Invoke-RestMethod -Uri "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS" -Headers @{Authorization=("Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$($env:SONAR_TOKEN):")))}
+          # Construcción correcta de la URL
+          $REQUEST_URL = "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS"
+          Write-Host "Fetching SonarCloud Metrics from: $REQUEST_URL"
+
+          # Realiza la petición con autenticación
+          $Headers = @{ Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$($env:SONAR_TOKEN):")) }
+          $RESPONSE = Invoke-RestMethod -Uri $REQUEST_URL -Headers $Headers -Method Get
 
           if (-not $RESPONSE -or $RESPONSE.Contains("errors")) {
             Write-Host "Error fetching SonarCloud metrics."
             exit 1
           }
 
+          # Generar salida en markdown para el action summary
           $METRICS_TABLE = "## 📊 SonarCloud Metrics`n| Metric | Value |`n|---------|---------|"
           foreach ($measure in $RESPONSE.component.measures) {
             $METRICS_TABLE += "`n| $($measure.metric) | $($measure.value) |"
