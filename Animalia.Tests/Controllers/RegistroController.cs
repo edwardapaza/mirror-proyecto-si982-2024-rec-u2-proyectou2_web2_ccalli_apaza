@@ -3,7 +3,8 @@ using Animalia.Data;
 using Animalia.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Session;
+
 
 namespace Animalia.Controllers
 {

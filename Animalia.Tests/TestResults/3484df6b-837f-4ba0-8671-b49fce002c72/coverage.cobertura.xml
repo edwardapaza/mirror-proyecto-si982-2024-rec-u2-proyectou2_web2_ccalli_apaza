@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0" branch-rate="0" version="1.9" timestamp="1739918728" lines-covered="0" lines-valid="2683" branches-covered="0" branches-valid="156">
+<coverage line-rate="0" branch-rate="0" version="1.9" timestamp="1740086656" lines-covered="0" lines-valid="2683" branches-covered="0" branches-valid="156">
   <sources>
     <source>C:\Users\Edward\</source>
   </sources>
   <packages>
     <package name="Animalia" line-rate="0" branch-rate="0" complexity="261">
       <classes>
-        <class name="Program" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Program.cs" line-rate="0" branch-rate="0" complexity="2">
+        <class name="Program" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Program.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="&lt;Main&gt;$" signature="(System.String[])" line-rate="0" branch-rate="0" complexity="2">
               <lines>
@@ -82,7 +82,7 @@
             <line number="4" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Agendamiento_Index/&lt;&gt;c__DisplayClass11_0/&lt;&lt;ExecuteAsync&gt;b__0&gt;d" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Agendamiento\Index.cshtml" line-rate="0" branch-rate="0" complexity="18">
+        <class name="AspNetCoreGeneratedDocument.Views_Agendamiento_Index/&lt;&gt;c__DisplayClass11_0/&lt;&lt;ExecuteAsync&gt;b__0&gt;d" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Agendamiento\Index.cshtml" line-rate="0" branch-rate="0" complexity="18">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="18">
               <lines>
@@ -146,7 +146,7 @@
             <line number="59" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Agendamiento_Index/&lt;&gt;c__DisplayClass11_0/&lt;&lt;ExecuteAsync&gt;b__1&gt;d" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Agendamiento\Index.cshtml" line-rate="0" branch-rate="0" complexity="8">
+        <class name="AspNetCoreGeneratedDocument.Views_Agendamiento_Index/&lt;&gt;c__DisplayClass11_0/&lt;&lt;ExecuteAsync&gt;b__1&gt;d" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Agendamiento\Index.cshtml" line-rate="0" branch-rate="0" complexity="8">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="8">
               <lines>
@@ -182,7 +182,7 @@
             <line number="79" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Agendamiento_Index/&lt;&gt;c__DisplayClass11_0/&lt;&lt;ExecuteAsync&gt;b__2&gt;d" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Agendamiento\Index.cshtml" line-rate="0" branch-rate="0" complexity="8">
+        <class name="AspNetCoreGeneratedDocument.Views_Agendamiento_Index/&lt;&gt;c__DisplayClass11_0/&lt;&lt;ExecuteAsync&gt;b__2&gt;d" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Agendamiento\Index.cshtml" line-rate="0" branch-rate="0" complexity="8">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="8">
               <lines>
@@ -218,7 +218,7 @@
             <line number="105" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Agendamiento_Index/&lt;ExecuteAsync&gt;d__11" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Agendamiento\Index.cshtml" line-rate="0" branch-rate="0" complexity="20">
+        <class name="AspNetCoreGeneratedDocument.Views_Agendamiento_Index/&lt;ExecuteAsync&gt;d__11" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Agendamiento\Index.cshtml" line-rate="0" branch-rate="0" complexity="20">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="20">
               <lines>
@@ -286,7 +286,7 @@
             <line number="137" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Home_Index/&lt;ExecuteAsync&gt;d__0" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Home\Index.cshtml" line-rate="0" branch-rate="1" complexity="1">
+        <class name="AspNetCoreGeneratedDocument.Views_Home_Index/&lt;ExecuteAsync&gt;d__0" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Home\Index.cshtml" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -298,7 +298,7 @@
             <line number="2" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Home_Privacy/&lt;ExecuteAsync&gt;d__0" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Home\Privacy.cshtml" line-rate="0" branch-rate="1" complexity="1">
+        <class name="AspNetCoreGeneratedDocument.Views_Home_Privacy/&lt;ExecuteAsync&gt;d__0" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Home\Privacy.cshtml" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -310,7 +310,7 @@
             <line number="2" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Informes_CreateDiagnostico/&lt;ExecuteAsync&gt;d__21" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Informes\CreateDiagnostico.cshtml" line-rate="0" branch-rate="0" complexity="2">
+        <class name="AspNetCoreGeneratedDocument.Views_Informes_CreateDiagnostico/&lt;ExecuteAsync&gt;d__21" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Informes\CreateDiagnostico.cshtml" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="2">
               <lines>
@@ -330,7 +330,7 @@
             </line>
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Informes_Index/&lt;ExecuteAsync&gt;d__12" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Informes\Index.cshtml" line-rate="0" branch-rate="0" complexity="16">
+        <class name="AspNetCoreGeneratedDocument.Views_Informes_Index/&lt;ExecuteAsync&gt;d__12" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Informes\Index.cshtml" line-rate="0" branch-rate="0" complexity="16">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="16">
               <lines>
@@ -414,7 +414,7 @@
             <line number="60" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Login_Index/&lt;ExecuteAsync&gt;d__15" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Login\Index.cshtml" line-rate="0" branch-rate="0" complexity="4">
+        <class name="AspNetCoreGeneratedDocument.Views_Login_Index/&lt;ExecuteAsync&gt;d__15" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Login\Index.cshtml" line-rate="0" branch-rate="0" complexity="4">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="4">
               <lines>
@@ -436,7 +436,7 @@
             </line>
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Notification_Index/&lt;ExecuteAsync&gt;d__10" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Notification\Index.cshtml" line-rate="0" branch-rate="0" complexity="12">
+        <class name="AspNetCoreGeneratedDocument.Views_Notification_Index/&lt;ExecuteAsync&gt;d__10" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Notification\Index.cshtml" line-rate="0" branch-rate="0" complexity="12">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="12">
               <lines>
@@ -518,7 +518,7 @@
             <line number="62" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Registro_Index/&lt;&gt;c__DisplayClass15_0/&lt;&lt;ExecuteAsync&gt;b__1&gt;d" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Registro\Index.cshtml" line-rate="0" branch-rate="0" complexity="8">
+        <class name="AspNetCoreGeneratedDocument.Views_Registro_Index/&lt;&gt;c__DisplayClass15_0/&lt;&lt;ExecuteAsync&gt;b__1&gt;d" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Registro\Index.cshtml" line-rate="0" branch-rate="0" complexity="8">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="8">
               <lines>
@@ -554,7 +554,7 @@
             <line number="75" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Registro_Index/&lt;ExecuteAsync&gt;d__15" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Registro\Index.cshtml" line-rate="0" branch-rate="0" complexity="8">
+        <class name="AspNetCoreGeneratedDocument.Views_Registro_Index/&lt;ExecuteAsync&gt;d__15" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Registro\Index.cshtml" line-rate="0" branch-rate="0" complexity="8">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="8">
               <lines>
@@ -582,7 +582,7 @@
             </line>
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views_Shared_Error/&lt;ExecuteAsync&gt;d__0" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Shared\Error.cshtml" line-rate="0" branch-rate="0" complexity="2">
+        <class name="AspNetCoreGeneratedDocument.Views_Shared_Error/&lt;ExecuteAsync&gt;d__0" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\Shared\Error.cshtml" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="2">
               <lines>
@@ -608,7 +608,7 @@
             <line number="14" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="AspNetCoreGeneratedDocument.Views__ViewStart/&lt;ExecuteAsync&gt;d__0" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\_ViewStart.cshtml" line-rate="0" branch-rate="1" complexity="1">
+        <class name="AspNetCoreGeneratedDocument.Views__ViewStart/&lt;ExecuteAsync&gt;d__0" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Views\_ViewStart.cshtml" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -620,7 +620,7 @@
             <line number="2" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Models.Cliente" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Cliente.cs" line-rate="0" branch-rate="1" complexity="6">
+        <class name="Animalia.Models.Cliente" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Cliente.cs" line-rate="0" branch-rate="1" complexity="6">
           <methods>
             <method name="get_IdCliente" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -662,7 +662,7 @@
             <line number="28" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Models.Connection" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Connection.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Animalia.Models.Connection" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Connection.cs" line-rate="0" branch-rate="1" complexity="2">
           <methods>
             <method name="GetConnection" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -690,7 +690,7 @@
             <line number="13" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Models.Consulta" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Consulta.cs" line-rate="0" branch-rate="1" complexity="11">
+        <class name="Animalia.Models.Consulta" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Consulta.cs" line-rate="0" branch-rate="1" complexity="11">
           <methods>
             <method name="get_IdConsulta" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -762,7 +762,7 @@
             <line number="42" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Models.Diagnostico" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Diagnosticos.cs" line-rate="0" branch-rate="1" complexity="8">
+        <class name="Animalia.Models.Diagnostico" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Diagnosticos.cs" line-rate="0" branch-rate="1" complexity="8">
           <methods>
             <method name="get_IdDiagnostico" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -816,7 +816,7 @@
             <line number="31" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Models.ErrorViewModel" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\ErrorViewModel.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Animalia.Models.ErrorViewModel" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\ErrorViewModel.cs" line-rate="0" branch-rate="1" complexity="2">
           <methods>
             <method name="get_RequestId" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -834,7 +834,7 @@
             <line number="7" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Models.Mascota" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Mascota.cs" line-rate="0" branch-rate="1" complexity="8">
+        <class name="Animalia.Models.Mascota" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Mascota.cs" line-rate="0" branch-rate="1" complexity="8">
           <methods>
             <method name="get_IdMascota" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -888,7 +888,7 @@
             <line number="32" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Models.Usuario" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Usuario.cs" line-rate="0" branch-rate="1" complexity="4">
+        <class name="Animalia.Models.Usuario" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Usuario.cs" line-rate="0" branch-rate="1" complexity="4">
           <methods>
             <method name="get_IdUsuario" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -918,7 +918,7 @@
             <line number="22" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Models.Veterinario" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Veterinario.cs" line-rate="0" branch-rate="1" complexity="6">
+        <class name="Animalia.Models.Veterinario" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\Veterinario.cs" line-rate="0" branch-rate="1" complexity="6">
           <methods>
             <method name="get_IdVeterinario" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -960,7 +960,7 @@
             <line number="27" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Models.vw_ConsultasNotificaciones" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\vw_ConsultasNotificaciones.cs" line-rate="0" branch-rate="1" complexity="11">
+        <class name="Animalia.Models.vw_ConsultasNotificaciones" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Models\vw_ConsultasNotificaciones.cs" line-rate="0" branch-rate="1" complexity="11">
           <methods>
             <method name="get_IdConsulta" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -1032,7 +1032,7 @@
             <line number="21" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.InitialCreate" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250130172902_InitialCreate.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Animalia.Migrations.InitialCreate" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250130172902_InitialCreate.cs" line-rate="0" branch-rate="1" complexity="2">
           <methods>
             <method name="Up" signature="(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -1180,7 +1180,7 @@
             <line number="86" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.InitialCreate" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250130172902_InitialCreate.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Animalia.Migrations.InitialCreate" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250130172902_InitialCreate.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="BuildTargetModel" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -1430,7 +1430,7 @@
             <line number="145" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.AddConsultasYVeterinariosFix2" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250201142634_AddConsultasYVeterinariosFix2.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Animalia.Migrations.AddConsultasYVeterinariosFix2" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250201142634_AddConsultasYVeterinariosFix2.cs" line-rate="0" branch-rate="1" complexity="2">
           <methods>
             <method name="Up" signature="(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -1604,7 +1604,7 @@
             <line number="101" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.AddConsultasYVeterinariosFix2" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250201142634_AddConsultasYVeterinariosFix2.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Animalia.Migrations.AddConsultasYVeterinariosFix2" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250201142634_AddConsultasYVeterinariosFix2.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="BuildTargetModel" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -2076,7 +2076,7 @@
             <line number="261" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.AddConsultasNotificacionesView" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250209202940_AddConsultasNotificacionesView.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Animalia.Migrations.AddConsultasNotificacionesView" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250209202940_AddConsultasNotificacionesView.cs" line-rate="0" branch-rate="1" complexity="2">
           <methods>
             <method name="Up" signature="(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -2140,7 +2140,7 @@
             <line number="40" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.AddConsultasNotificacionesView" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250209202940_AddConsultasNotificacionesView.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Animalia.Migrations.AddConsultasNotificacionesView" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250209202940_AddConsultasNotificacionesView.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="BuildTargetModel" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -2700,7 +2700,7 @@
             <line number="306" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.AddDiagnosticosTable" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211033814_AddDiagnosticosTable.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Animalia.Migrations.AddDiagnosticosTable" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211033814_AddDiagnosticosTable.cs" line-rate="0" branch-rate="1" complexity="2">
           <methods>
             <method name="Up" signature="(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -2780,7 +2780,7 @@
             <line number="49" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.AddDiagnosticosTable" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211033814_AddDiagnosticosTable.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Animalia.Migrations.AddDiagnosticosTable" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211033814_AddDiagnosticosTable.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="BuildTargetModel" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -3436,7 +3436,7 @@
             <line number="356" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.RemoveConflictingRelationship" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211035709_RemoveConflictingRelationship.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Animalia.Migrations.RemoveConflictingRelationship" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211035709_RemoveConflictingRelationship.cs" line-rate="0" branch-rate="1" complexity="2">
           <methods>
             <method name="Up" signature="(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -3488,7 +3488,7 @@
             <line number="35" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.RemoveConflictingRelationship" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211035709_RemoveConflictingRelationship.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Animalia.Migrations.RemoveConflictingRelationship" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211035709_RemoveConflictingRelationship.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="BuildTargetModel" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -4156,7 +4156,7 @@
             <line number="363" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.animaliaDB" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211171252_animaliaDB.cs" line-rate="0" branch-rate="1" complexity="2">
+        <class name="Animalia.Migrations.animaliaDB" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211171252_animaliaDB.cs" line-rate="0" branch-rate="1" complexity="2">
           <methods>
             <method name="Up" signature="(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -4178,7 +4178,7 @@
             <line number="20" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.animaliaDB" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211171252_animaliaDB.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Animalia.Migrations.animaliaDB" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\20250211171252_animaliaDB.Designer.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="BuildTargetModel" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -4846,7 +4846,7 @@
             <line number="363" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Migrations.ApplicationDbContextModelSnapshot" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\ApplicationDbContextModelSnapshot.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Animalia.Migrations.ApplicationDbContextModelSnapshot" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Migrations\ApplicationDbContextModelSnapshot.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="BuildModel" signature="(Microsoft.EntityFrameworkCore.ModelBuilder)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -5514,7 +5514,7 @@
             <line number="360" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Data.ApplicationDbContext" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Data\ApplicationDbContext.cs" line-rate="0" branch-rate="1" complexity="9">
+        <class name="Animalia.Data.ApplicationDbContext" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Data\ApplicationDbContext.cs" line-rate="0" branch-rate="1" complexity="9">
           <methods>
             <method name="get_Usuarios" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -5634,7 +5634,7 @@
             <line number="11" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Controllers.AgendamientoController" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\AgendamientoController.cs" line-rate="0" branch-rate="0" complexity="15">
+        <class name="Animalia.Controllers.AgendamientoController" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\AgendamientoController.cs" line-rate="0" branch-rate="0" complexity="15">
           <methods>
             <method name="Index" signature="()" line-rate="0" branch-rate="0" complexity="6">
               <lines>
@@ -5814,7 +5814,7 @@
             <line number="16" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Controllers.HomeController" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\HomeController.cs" line-rate="0" branch-rate="0" complexity="8">
+        <class name="Animalia.Controllers.HomeController" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\HomeController.cs" line-rate="0" branch-rate="0" complexity="8">
           <methods>
             <method name="Index" signature="()" line-rate="0" branch-rate="0" complexity="2">
               <lines>
@@ -5886,7 +5886,7 @@
             <line number="14" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Controllers.InformesController" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\InformesController.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Animalia.Controllers.InformesController" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\InformesController.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name=".ctor" signature="(Animalia.Data.ApplicationDbContext)" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -5904,7 +5904,7 @@
             <line number="25" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Controllers.InformesController/&lt;CreateDiagnostico&gt;d__3" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\InformesController.cs" line-rate="0" branch-rate="0" complexity="4">
+        <class name="Animalia.Controllers.InformesController/&lt;CreateDiagnostico&gt;d__3" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\InformesController.cs" line-rate="0" branch-rate="0" complexity="4">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="4">
               <lines>
@@ -5946,7 +5946,7 @@
             <line number="48" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Controllers.InformesController/&lt;CreateDiagnostico&gt;d__4" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\InformesController.cs" line-rate="0" branch-rate="0" complexity="2">
+        <class name="Animalia.Controllers.InformesController/&lt;CreateDiagnostico&gt;d__4" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\InformesController.cs" line-rate="0" branch-rate="0" complexity="2">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="2">
               <lines>
@@ -5980,7 +5980,7 @@
             <line number="61" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Controllers.InformesController/&lt;GenerarPdfDiagnostico&gt;d__5" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\InformesController.cs" line-rate="0" branch-rate="0" complexity="4">
+        <class name="Animalia.Controllers.InformesController/&lt;GenerarPdfDiagnostico&gt;d__5" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\InformesController.cs" line-rate="0" branch-rate="0" complexity="4">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="4">
               <lines>
@@ -6222,7 +6222,7 @@
             <line number="199" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Controllers.InformesController/&lt;Index&gt;d__2" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\InformesController.cs" line-rate="0" branch-rate="1" complexity="1">
+        <class name="Animalia.Controllers.InformesController/&lt;Index&gt;d__2" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\InformesController.cs" line-rate="0" branch-rate="1" complexity="1">
           <methods>
             <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -6248,7 +6248,7 @@
             <line number="36" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Controllers.LoginController" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\LoginController.cs" line-rate="0" branch-rate="0" complexity="11">
+        <class name="Animalia.Controllers.LoginController" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\LoginController.cs" line-rate="0" branch-rate="0" complexity="11">
           <methods>
             <method name="Index" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -6360,7 +6360,7 @@
             <line number="16" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Controllers.NotificationController" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\NotificationController.cs" line-rate="0" branch-rate="0" complexity="6">
+        <class name="Animalia.Controllers.NotificationController" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\NotificationController.cs" line-rate="0" branch-rate="0" complexity="6">
           <methods>
             <method name="Index" signature="()" line-rate="0" branch-rate="1" complexity="1">
               <lines>
@@ -6474,7 +6474,7 @@
             <line number="16" hits="0" branch="False" />
           </lines>
         </class>
-        <class name="Animalia.Controllers.RegistroController" filename="Desktop\morrir\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\RegistroController.cs" line-rate="0" branch-rate="0" complexity="11">
+        <class name="Animalia.Controllers.RegistroController" filename="Desktop\mirror\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\Animalia\Controllers\RegistroController.cs" line-rate="0" branch-rate="0" complexity="11">
           <methods>
             <method name="Index" signature="()" line-rate="0" branch-rate="0" complexity="4">
               <lines>

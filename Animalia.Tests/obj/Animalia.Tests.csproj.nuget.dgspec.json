@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia.Tests\\Animalia.Tests.csproj": {}
+    "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia.Tests\\Animalia.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia.Tests\\Animalia.Tests.csproj": {
+    "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia.Tests\\Animalia.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia.Tests\\Animalia.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia.Tests\\Animalia.Tests.csproj",
         "projectName": "Animalia.Tests",
-        "projectPath": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia.Tests\\Animalia.Tests.csproj",
+        "projectPath": "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia.Tests\\Animalia.Tests.csproj",
         "packagesPath": "C:\\Users\\Edward\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Edward\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj": {
-                "projectPath": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj"
+              "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj": {
+                "projectPath": "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj"
               }
             }
           }
@@ -50,9 +50,21 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
             "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.3.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -62,9 +74,17 @@
               "target": "Package",
               "version": "[9.0.2, )"
             },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.11.1, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
             },
             "coverlet.collector": {
               "target": "Package",
@@ -99,14 +119,14 @@
         }
       }
     },
-    "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj": {
+    "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj",
+        "projectUniqueName": "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj",
         "projectName": "Animalia",
-        "projectPath": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj",
+        "projectPath": "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\Animalia.csproj",
         "packagesPath": "C:\\Users\\Edward\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Edward\\Desktop\\morrir\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\obj\\",
+        "outputPath": "C:\\Users\\Edward\\Desktop\\mirror\\mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza\\Animalia\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Edward\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,38 +1,15 @@
-using System.Diagnostics;
-using Animalia.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging; 
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
-namespace Animalia.Controllers
+using Moq;
+using Microsoft.Extensions.Logging;
+using Animalia.Controllers;  // Asegura que tomas el controlador correcto
+
+public class HomeControllerTests
 {
-    public class HomeController : Controller
+    private readonly Mock<ILogger<HomeController>> _loggerMock;
+    private readonly HomeController _controller;
+
+    public HomeControllerTests()
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            if (HttpContext.Session.GetString("Usuario") == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        _loggerMock = new Mock<ILogger<HomeController>>();
+        _controller = new HomeController(_loggerMock.Object);
     }
 }
