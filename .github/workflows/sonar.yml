@@ -1,78 +1,103 @@
-name: SonarQube Analysis
+name: SonarCloud Analysis
 
 on:
   push:
     branches:
       - main
   pull_request:
-    branches:
-      - main
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
-  sonarqube:
-    name: SonarQube Scan
-    runs-on: ubuntu-latest
-
+  sonarcloud-analysis:
+    name: SonarCloud Analysis
+    runs-on: windows-latest
     steps:
-      # Paso 1: Checkout del repositorio
-      - name: Checkout Repository
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'zulu'
+
+      - name: Checkout Code
         uses: actions/checkout@v4
-
-      # Paso 2: Configurar .NET Core
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0'
+          fetch-depth: 0
 
-      # Paso 3: Instalar herramientas necesarias
-      - name: Install Tools
-        run: |
-          dotnet tool install --global dotnet-sonarscanner
-          dotnet tool install --global dotnet-reportgenerator-globaltool
-
-      # Paso 4: Restaurar dependencias
-      - name: Restore Dependencies
-        run: |
-          cd Animalia
-          dotnet restore
-
-      # Paso 5: Ejecutar pruebas con cobertura
-      - name: Run Tests with Coverage
-        run: |
-          cd Animalia
-          dotnet test --collect:"XPlat Code Coverage" --results-directory TestResults
-
-      # Paso 6: Verificar que el archivo de cobertura existe
-      - name: Verify Coverage Report Exists
-        run: |
-          ls -R Animalia/TestResults || echo "No coverage file found!"
-
-      # Paso 7: Generar reporte de cobertura
-      - name: Generar reporte de cobertura
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.3.7
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
         with:
-          reports: ./Animalia/TestResults/*/coverage.cobertura.xml  # Ruta del archivo de cobertura
-          targetdir: coveragereport
-          reporttypes: MarkdownSummary;MarkdownAssembliesSummary;MarkdownSummaryGithub
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
 
-      # Paso 8: Subir el reporte de cobertura como artefacto
-      - name: Subir artefacto del reporte de cobertura
-        uses: actions/upload-artifact@v4
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v4
         with:
-          name: CoverageReport
-          path: coveragereport
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
 
-      # Paso 9: Publicar el resumen de cobertura en el build
-      - name: Publicar cobertura en el resumen de build
-        run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
-        shell: bash
+      - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
-      # Paso 10: Ejecutar análisis de SonarQube
-      - name: Run SonarQube Analysis
+      - name: Build and Analyze with SonarCloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: powershell
         run: |
-          cd Animalia
-          dotnet-sonarscanner begin /k:"${{ secrets.SONAR_PROJECT }}" /o:"${{ secrets.SONAR_ORG }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths="coveragereport/SonarQube.xml"
-          dotnet build --no-restore
-          dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza" /o:"edwardapaza" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet build
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
+      - name: Fetch SonarCloud Metrics and Generate Markdown Report
+        id: fetch-metrics
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: bash
+        run: |
+          set -e
+          SONAR_API_URL="https://sonarcloud.io/api/measures/component"
+          PROJECT_KEY="edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"
+          METRICS="bugs,vulnerabilities,code_smells,duplicated_lines_density,complexity,ncloc,cognitive_complexity,comment_lines_density,security_rating,reliability_rating,sqale_rating"
+
+          echo "Fetching SonarCloud Metrics..."
+          RESPONSE=$(curl -s -u "$SONAR_TOKEN:" "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS")
+
+          if [[ -z "$RESPONSE" || "$RESPONSE" == *"errors"* ]]; then
+            echo "❌ Error fetching SonarCloud metrics. Please check your project key and API token."
+            echo "Error: $RESPONSE"
+            exit 1
+          fi
+
+          echo "📊 Generating Markdown Report..."
+          echo "## 📊 SonarCloud Analysis Report" > sonar_report.md
+          echo "" >> sonar_report.md
+          echo "| Metric               | Value   | Icon       |" >> sonar_report.md
+          echo "|----------------------|---------|------------|" >> sonar_report.md
+          
+          echo $RESPONSE | jq -r '.component.measures[] | 
+          if .metric == "security_rating" then "| 🛡️ Security Rating      | \(.value) | 🛡️ |" 
+          elif .metric == "reliability_rating" then "| 🔧 Reliability Rating   | \(.value) | 🔧 |" 
+          elif .metric == "sqale_rating" then "| ♻️ Maintainability      | \(.value) | ♻️ |" 
+          elif .metric == "code_smells" then "| 🤢 Code Smells          | \(.value) | 🤢 |" 
+          elif .metric == "duplicated_lines_density" then "| 🔀 Duplications         | \(.value)% | 🔀 |" 
+          elif .metric == "cognitive_complexity" then "| 🧠 Cognitive Complexity | \(.value) | 🧠 |" 
+          elif .metric == "bugs" then "| 🐛 Bugs                 | \(.value) | 🐛 |" 
+          elif .metric == "comment_lines_density" then "| 💬 Comment Density      | \(.value)% | 💬 |" 
+          else empty end' >> sonar_report.md
+
+          cat sonar_report.md
+          echo "REPORT_PATH=sonar_report.md" >> $GITHUB_ENV
+
+      - name: Add Markdown Report to GitHub Action Summary
+        run: |
+          cat ${{ env.REPORT_PATH }} >> $GITHUB_STEP_SUMMARY
