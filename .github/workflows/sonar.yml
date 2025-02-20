@@ -9,7 +9,7 @@ on:
 
 jobs:
   sonarcloud:
-    name: Build and Analyze with SonarCloud
+    name: SonarCloud Analysis
     runs-on: windows-latest
 
     steps:
@@ -18,25 +18,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
       - name: Set up .NET 8
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
-      - name: Install SonarQube Scanner
-        run: |
-          echo "Installing SonarScanner..."
-          dotnet tool install --global dotnet-sonarscanner
-          echo "SonarScanner installed successfully."
-
-      - name: Verify SonarScanner Installation
-        run: dotnet tool list --global
+      - name: Install SonarCloud Scanner
+        run: dotnet tool install --global dotnet-sonarscanner
 
       - name: Build and Analyze with SonarCloud
         env:
@@ -50,30 +38,27 @@ jobs:
 
       - name: Fetch SonarCloud Metrics and Display
         id: fetch-metrics
-        shell: pwsh
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: pwsh
         run: |
           $SONAR_API_URL = "https://sonarcloud.io/api/measures/component"
           $PROJECT_KEY = "edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"
-          $METRICS = "bugs,vulnerabilities,code_smells,duplicated_lines_density,complexity,ncloc,cognitive_complexity,comment_lines_density,security_rating,reliability_rating,sqale_rating"
+          $METRICS = "bugs,vulnerabilities,code_smells"
 
-          $REQUEST_URL = "$SONAR_API_URL`?component=$PROJECT_KEY&metricKeys=$METRICS"
-
+          # Construcción de la URL
+          $REQUEST_URL = "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS"
           Write-Host "Fetching SonarCloud Metrics from: $REQUEST_URL"
 
-          $Headers = @{
-            Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$env:SONAR_TOKEN:"))
-          }
+          # Configurar autenticación con SONAR_TOKEN
+          $Headers = @{ Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$env:SONAR_TOKEN:")) }
 
-          try {
-            $RESPONSE = Invoke-RestMethod -Uri $REQUEST_URL -Headers $Headers -Method Get
-            if (-not $RESPONSE) {
-              Write-Host "Error fetching SonarCloud metrics: Empty response"
-              exit 1
-            }
-          } catch {
-            Write-Host "Error fetching SonarCloud metrics: $_"
+          # Hacer la solicitud
+          $RESPONSE = Invoke-RestMethod -Uri $REQUEST_URL -Headers $Headers -Method Get
+
+          # Validar respuesta
+          if (!$RESPONSE -or $RESPONSE -match "errors") {
+            Write-Host "Error fetching SonarCloud metrics: $RESPONSE"
             exit 1
           }
 
@@ -84,25 +69,8 @@ jobs:
         shell: pwsh
         run: |
           echo "## 📊 SonarCloud Metrics" >> $GITHUB_STEP_SUMMARY
-          echo "| Metric               | Value   | Icon       |" >> $GITHUB_STEP_SUMMARY
-          echo "|----------------------|---------|------------|" >> $GITHUB_STEP_SUMMARY
-          echo $env:response | ConvertFrom-Json | ForEach-Object {
-            if ($_.component.measures) {
-              $_.component.measures | ForEach-Object {
-                $icon = ""
-                switch ($_.metric) {
-                  "security_rating" { $icon = "🛡️" }
-                  "reliability_rating" { $icon = "🔧" }
-                  "sqale_rating" { $icon = "♻️" }
-                  "code_smells" { $icon = "🤢" }
-                  "duplicated_lines_density" { $icon = "🔀" }
-                  "cognitive_complexity" { $icon = "🧠" }
-                  "bugs" { $icon = "🐛" }
-                  "comment_lines_density" { $icon = "💬" }
-                }
-                echo "| $($_.metric) | $($_.value) | $icon |" >> $GITHUB_STEP_SUMMARY
-              }
-            }
+          echo "| Metric               | Value   |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------------------|---------|" >> $GITHUB_STEP_SUMMARY
+          echo "$env:response" | ConvertFrom-Json | Select-Object -ExpandProperty component | Select-Object -ExpandProperty measures | ForEach-Object {
+            echo "| $($_.metric) | $($_.value) |" >> $GITHUB_STEP_SUMMARY
           }
-        env:
-          response: ${{ env.response }}
