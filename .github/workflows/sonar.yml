@@ -58,7 +58,7 @@ jobs:
           $PROJECT_KEY = "edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"
           $METRICS = "bugs,vulnerabilities,code_smells,duplicated_lines_density,complexity,ncloc,cognitive_complexity,comment_lines_density,security_rating,reliability_rating,sqale_rating"
 
-          $REQUEST_URL = "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS"
+          $REQUEST_URL = "$SONAR_API_URL`?component=$PROJECT_KEY&metricKeys=$METRICS"
 
           Write-Host "Fetching SonarCloud Metrics from: $REQUEST_URL"
 
