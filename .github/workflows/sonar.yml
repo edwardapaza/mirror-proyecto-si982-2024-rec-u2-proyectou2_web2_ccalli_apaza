@@ -48,7 +48,7 @@ jobs:
 
           # Construcción de la URL
           $REQUEST_URL = "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS"
-          Write-Host "Fetching SonarCloud Metrics from: $REQUEST_URL"
+          Write-Host "Final URL: $REQUEST_URL"  # Debug para ver la URL antes de hacer la request
 
           # Configurar autenticación con SONAR_TOKEN
           $Headers = @{ Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$env:SONAR_TOKEN:")) }
