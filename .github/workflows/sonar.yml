@@ -9,91 +9,50 @@ on:
 
 jobs:
   sonarcloud:
-    name: Build and Analyze with SonarCloud
+    name: SonarCloud Analysis
     runs-on: windows-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      - name: Set up .NET 8
+      - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
-      - name: Cache SonarQube Cloud packages
-        uses: actions/cache@v4
-        with:
-          path: ~\sonar\cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
+      - name: Install SonarScanner
+        run: dotnet tool install --global dotnet-sonarscanner
 
-      - name: Install SonarQube Cloud scanner
-        run: |
-          echo "Installing SonarScanner..."
-          dotnet tool install --global dotnet-sonarscanner
-          echo "SonarScanner installed successfully."
-
-      - name: Verify SonarScanner Installation
-        run: |
-          echo "Checking installed .NET tools..."
-          dotnet tool list --global
-
-      - name: Build and Analyze with SonarCloud
+      - name: Run SonarCloud Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          if [ -d "Animalia" ]; then cd Animalia; fi
           dotnet-sonarscanner begin /k:"edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza" /o:"edwardapaza" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --configuration Release
-          dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage"
           dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
-      - name: Fetch SonarCloud Metrics and Display
+      - name: Fetch SonarCloud Metrics
         id: fetch-metrics
-        shell: pwsh
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: pwsh
         run: |
           $SONAR_API_URL = "https://sonarcloud.io/api/measures/component"
           $PROJECT_KEY = "edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"
           $METRICS = "bugs,vulnerabilities,code_smells,duplicated_lines_density,complexity,ncloc,cognitive_complexity,comment_lines_density,security_rating,reliability_rating,sqale_rating"
 
           Write-Host "Fetching SonarCloud Metrics..."
-          $RESPONSE = Invoke-RestMethod -Uri "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS" -Headers @{ Authorization = "Basic $( [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("${{ secrets.SONAR_TOKEN }}:")) )" }
+          $RESPONSE = Invoke-RestMethod -Uri "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS" -Headers @{Authorization=("Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$($env:SONAR_TOKEN):")))}
 
-          if (-not $RESPONSE -or $RESPONSE.PSObject.Properties.Name -contains "errors") {
-              Write-Host "Error fetching SonarCloud metrics."
-              exit 1
+          if (-not $RESPONSE -or $RESPONSE.Contains("errors")) {
+            Write-Host "Error fetching SonarCloud metrics."
+            exit 1
           }
 
-          Write-Host "SonarCloud API Response: $RESPONSE"
-          echo "response=$RESPONSE" >> $env:GITHUB_ENV
-
-      - name: Publish SonarCloud Metrics as Summary
-        shell: pwsh
-        run: |
-          echo "## 📊 SonarCloud Metrics" >> $GITHUB_STEP_SUMMARY
-          echo "| Metric               | Value   | Icon       |" >> $GITHUB_STEP_SUMMARY
-          echo "|----------------------|---------|------------|" >> $GITHUB_STEP_SUMMARY
-          $RESPONSE = "${{ env.response }}"
-          $RESPONSE | ConvertFrom-Json | Select-Object -ExpandProperty component | Select-Object -ExpandProperty measures | ForEach-Object {
-              switch ($_.metric) {
-                  "security_rating" { echo "| Security Rating      | $($_.value) | 🛡️ |" >> $GITHUB_STEP_SUMMARY }
-                  "reliability_rating" { echo "| Reliability Rating   | $($_.value) | 🔧 |" >> $GITHUB_STEP_SUMMARY }
-                  "sqale_rating" { echo "| Maintainability      | $($_.value) | ♻️ |" >> $GITHUB_STEP_SUMMARY }
-                  "code_smells" { echo "| Code Smells          | $($_.value) | 🤢 |" >> $GITHUB_STEP_SUMMARY }
-                  "duplicated_lines_density" { echo "| Duplications         | $($_.value)% | 🔀 |" >> $GITHUB_STEP_SUMMARY }
-                  "cognitive_complexity" { echo "| Cognitive Complexity | $($_.value) | 🧠 |" >> $GITHUB_STEP_SUMMARY }
-                  "bugs" { echo "| Bugs                 | $($_.value) | 🐛 |" >> $GITHUB_STEP_SUMMARY }
-                  "comment_lines_density" { echo "| Comment Density      | $($_.value)% | 💬 |" >> $GITHUB_STEP_SUMMARY }
-              }
+          $METRICS_TABLE = "## 📊 SonarCloud Metrics`n| Metric | Value |`n|---------|---------|"
+          foreach ($measure in $RESPONSE.component.measures) {
+            $METRICS_TABLE += "`n| $($measure.metric) | $($measure.value) |"
           }
+
+          echo "$METRICS_TABLE" >> $GITHUB_STEP_SUMMARY
