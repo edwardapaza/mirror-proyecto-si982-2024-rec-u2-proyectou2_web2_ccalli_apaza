@@ -27,15 +27,15 @@ jobs:
         run: dotnet tool install --global dotnet-sonarscanner
 
       - name: Build and Analyze with SonarCloud
-        shell: bash
+        shell: pwsh
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           cd Animalia
-          dotnet-sonarscanner begin /k:"edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza" /o:"edwardapaza" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet-sonarscanner begin /k=edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza /o=edwardapaza /d:sonar.token=${{ secrets.SONAR_TOKEN }} /d:sonar.host.url=https://sonarcloud.io
           dotnet build Animalia.sln --configuration Release
           dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage"
-          dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          dotnet-sonarscanner end /d:sonar.token=${{ secrets.SONAR_TOKEN }}
 
       - name: Fetch SonarCloud Metrics and Display
         id: fetch-metrics
@@ -43,35 +43,38 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          set -e
           SONAR_API_URL="https://sonarcloud.io/api/measures/component"
           PROJECT_KEY="edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"
           METRICS="bugs,vulnerabilities,code_smells,duplicated_lines_density,complexity,ncloc,cognitive_complexity,comment_lines_density,security_rating,reliability_rating,sqale_rating"
 
           echo "Fetching SonarCloud Metrics..."
+
           RESPONSE=$(curl -s -u "$SONAR_TOKEN:" "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS")
 
-          echo "SonarCloud API Response: $RESPONSE"
-          echo "response=$RESPONSE" >> $GITHUB_ENV
+          # Verificar si la respuesta es vacía o contiene errores
+          if [[ -z "$RESPONSE" ]] || echo "$RESPONSE" | grep -q "errors"; then
+            echo "Error fetching SonarCloud metrics."
+            echo "response={}" >> $GITHUB_ENV  # Evitar que el pipeline falle
+          else
+            echo "SonarCloud API Response: $RESPONSE"
+            echo "response=$RESPONSE" >> $GITHUB_ENV
+          fi
 
       - name: Publish SonarCloud Metrics as Annotations
         shell: bash
         run: |
-          set -e
           echo "## 📊 SonarCloud Metrics" >> $GITHUB_STEP_SUMMARY
           echo "| Metric               | Value   | Icon       |" >> $GITHUB_STEP_SUMMARY
           echo "|----------------------|---------|------------|" >> $GITHUB_STEP_SUMMARY
-
-          echo "$RESPONSE" | jq -r '
-          .component.measures[]? | 
-          if .metric == "security_rating" then "| Security Rating      | \(.value) | 🛡️ |"
-          elif .metric == "reliability_rating" then "| Reliability Rating   | \(.value) | 🔧 |"
-          elif .metric == "sqale_rating" then "| Maintainability      | \(.value) | ♻️ |"
-          elif .metric == "code_smells" then "| Code Smells         | \(.value) | 🤢 |"
-          elif .metric == "duplicated_lines_density" then "| Duplications        | \(.value)% | 🔀 |"
-          elif .metric == "cognitive_complexity" then "| Cognitive Complexity | \(.value) | 🧠 |"
-          elif .metric == "bugs" then "| Bugs                | \(.value) | 🐛 |"
-          elif .metric == "comment_lines_density" then "| Comment Density     | \(.value)% | 💬 |"
-          else empty end' >> "$GITHUB_STEP_SUMMARY"
+          echo $RESPONSE | jq -r '.component.measures[] | 
+          if .metric == "security_rating" then "| Security Rating      | \(.value) | 🛡️ |" 
+          elif .metric == "reliability_rating" then "| Reliability Rating   | \(.value) | 🔧 |" 
+          elif .metric == "sqale_rating" then "| Maintainability      | \(.value) | ♻️ |" 
+          elif .metric == "code_smells" then "| Code Smells          | \(.value) | 🤢 |" 
+          elif .metric == "duplicated_lines_density" then "| Duplications         | \(.value)% | 🔀 |" 
+          elif .metric == "cognitive_complexity" then "| Cognitive Complexity | \(.value) | 🧠 |" 
+          elif .metric == "bugs" then "| Bugs                 | \(.value) | 🐛 |" 
+          elif .metric == "comment_lines_density" then "| Comment Density      | \(.value)% | 💬 |" 
+          else empty end' >> $GITHUB_STEP_SUMMARY
         env:
           RESPONSE: ${{ env.response }}
