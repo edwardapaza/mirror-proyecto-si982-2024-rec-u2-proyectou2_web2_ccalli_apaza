@@ -27,6 +27,7 @@ jobs:
         run: dotnet tool install --global dotnet-sonarscanner
 
       - name: Build and Analyze with SonarCloud
+        shell: bash
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
@@ -38,6 +39,7 @@ jobs:
 
       - name: Fetch SonarCloud Metrics and Display
         id: fetch-metrics
+        shell: bash
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
@@ -49,12 +51,6 @@ jobs:
           echo "Fetching SonarCloud Metrics..."
           RESPONSE=$(curl -s -u "$SONAR_TOKEN:" "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS")
 
-          if [ -z "$RESPONSE" ] || [ "$RESPONSE" == "null" ]; then
-            echo "SonarCloud API Response: $RESPONSE"
-            echo "❌ Error: No data received from SonarCloud API. Please check the project key and SonarCloud API token."
-            exit 1
-          fi
-
           echo "SonarCloud API Response: $RESPONSE"
           echo "response=$RESPONSE" >> $GITHUB_ENV
 
@@ -65,13 +61,6 @@ jobs:
           echo "## 📊 SonarCloud Metrics" >> $GITHUB_STEP_SUMMARY
           echo "| Metric               | Value   | Icon       |" >> $GITHUB_STEP_SUMMARY
           echo "|----------------------|---------|------------|" >> $GITHUB_STEP_SUMMARY
-
-          if [ -z "$RESPONSE" ] || [ "$RESPONSE" == "null" ]; then
-            echo "| ❌ No data received from SonarCloud API | | |" >> $GITHUB_STEP_SUMMARY
-            exit 1
-          fi
-
-          echo "Response from SonarCloud: $RESPONSE"
 
           echo "$RESPONSE" | jq -r '
           .component.measures[]? | 
