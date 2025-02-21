@@ -40,34 +40,41 @@ jobs:
         id: fetch-metrics
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: bash  # ✅ Se asegura que se ejecute en Bash
         run: |
           set -e
           SONAR_API_URL="https://sonarcloud.io/api/measures/component"
           PROJECT_KEY="edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"
           METRICS="bugs,vulnerabilities,code_smells,duplicated_lines_density,complexity,ncloc,cognitive_complexity,comment_lines_density,security_rating,reliability_rating,sqale_rating"
+
           echo "Fetching SonarCloud Metrics..."
           RESPONSE=$(curl -s -u "$SONAR_TOKEN:" "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS")
-          
-          if [[ -z "$RESPONSE" || "$RESPONSE" == *"errors"* ]]; then
+
+          if [ -z "$RESPONSE" ] || [ "$RESPONSE" == "null" ]; then
             echo "SonarCloud API Response: $RESPONSE"
-            echo "Error fetching SonarCloud metrics. Please check the project key and SonarCloud API token."
+            echo "❌ Error: No data received from SonarCloud API. Please check the project key and SonarCloud API token."
             exit 1
           fi
-          
+
           echo "SonarCloud API Response: $RESPONSE"
-          echo "response=$RESPONSE" >> "$GITHUB_ENV"
+          echo "response=$RESPONSE" >> $GITHUB_ENV
 
       - name: Publish SonarCloud Metrics as Annotations
-        shell: bash  # ✅ Se ejecuta en bash
+        shell: bash
         run: |
           set -e
           echo "## 📊 SonarCloud Metrics" >> $GITHUB_STEP_SUMMARY
           echo "| Metric               | Value   | Icon       |" >> $GITHUB_STEP_SUMMARY
           echo "|----------------------|---------|------------|" >> $GITHUB_STEP_SUMMARY
 
+          if [ -z "$RESPONSE" ] || [ "$RESPONSE" == "null" ]; then
+            echo "| ❌ No data received from SonarCloud API | | |" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+          echo "Response from SonarCloud: $RESPONSE"
+
           echo "$RESPONSE" | jq -r '
-          .component.measures[] | 
+          .component.measures[]? | 
           if .metric == "security_rating" then "| Security Rating      | \(.value) | 🛡️ |"
           elif .metric == "reliability_rating" then "| Reliability Rating   | \(.value) | 🔧 |"
           elif .metric == "sqale_rating" then "| Maintainability      | \(.value) | ♻️ |"
@@ -77,3 +84,5 @@ jobs:
           elif .metric == "bugs" then "| Bugs                | \(.value) | 🐛 |"
           elif .metric == "comment_lines_density" then "| Comment Density     | \(.value)% | 💬 |"
           else empty end' >> "$GITHUB_STEP_SUMMARY"
+        env:
+          RESPONSE: ${{ env.response }}
