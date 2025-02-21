@@ -40,37 +40,35 @@ jobs:
         id: fetch-metrics
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: pwsh
         run: |
-          $SONAR_API_URL = "https://sonarcloud.io/api/measures/component"
-          $PROJECT_KEY = "edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"
-          $METRICS = "bugs,vulnerabilities,code_smells"
-
-          # Construcción de la URL
-          $REQUEST_URL = "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS"
-          Write-Host "Final URL: $REQUEST_URL"  # Debug para ver la URL antes de hacer la request
-
-          # Configurar autenticación con SONAR_TOKEN
-          $Headers = @{ Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$env:SONAR_TOKEN:")) }
-
-          # Hacer la solicitud
-          $RESPONSE = Invoke-RestMethod -Uri $REQUEST_URL -Headers $Headers -Method Get
-
-          # Validar respuesta
-          if (!$RESPONSE -or $RESPONSE -match "errors") {
-            Write-Host "Error fetching SonarCloud metrics: $RESPONSE"
+          set -e
+          SONAR_API_URL="https://sonarcloud.io/api/measures/component"
+          PROJECT_KEY="edwardapaza_mirror-proyecto-si982-2024-rec-u2-proyectou2_web2_ccalli_apaza"
+          METRICS="bugs,vulnerabilities,code_smells,duplicated_lines_density,complexity,ncloc,cognitive_complexity,comment_lines_density,security_rating,reliability_rating,sqale_rating"
+          echo "Fetching SonarCloud Metrics..."
+          RESPONSE=$(curl -s -u "$SONAR_TOKEN:" "$SONAR_API_URL?component=$PROJECT_KEY&metricKeys=$METRICS")
+          if [[ -z "$RESPONSE" || "$RESPONSE" == *"errors"* ]]; then
+            echo "SonarCloud API Response: $RESPONSE"
+            echo "Error fetching SonarCloud metrics. Please check the project key and SonarCloud API token."
             exit 1
-          }
-
-          Write-Host "SonarCloud API Response: $RESPONSE"
+          fi
+          echo "SonarCloud API Response: $RESPONSE"
           echo "response=$RESPONSE" >> $GITHUB_ENV
-
-      - name: Publish SonarCloud Metrics as Summary
-        shell: pwsh
+      - name: Publish SonarCloud Metrics as Annotations
         run: |
           echo "## 📊 SonarCloud Metrics" >> $GITHUB_STEP_SUMMARY
-          echo "| Metric               | Value   |" >> $GITHUB_STEP_SUMMARY
-          echo "|----------------------|---------|" >> $GITHUB_STEP_SUMMARY
-          echo "$env:response" | ConvertFrom-Json | Select-Object -ExpandProperty component | Select-Object -ExpandProperty measures | ForEach-Object {
-            echo "| $($_.metric) | $($_.value) |" >> $GITHUB_STEP_SUMMARY
-          }
+          echo "| Metric               | Value   | Icon       |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------------------|---------|------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Code Coverage       | ${{ env.COVERAGE }}% | ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo $RESPONSE | jq -r '.component.measures[] | 
+          if .metric == "security_rating" then "| Security Rating      | \(.value) | 🛡️ |" 
+          elif .metric == "reliability_rating" then "| Reliability Rating   | \(.value) | 🔧 |" 
+          elif .metric == "sqale_rating" then "| Maintainability      | \(.value) | ♻️ |" 
+          elif .metric == "code_smells" then "| Code Smells          | \(.value) | 🤢 |" 
+          elif .metric == "duplicated_lines_density" then "| Duplications         | \(.value)% | 🔀 |" 
+          elif .metric == "cognitive_complexity" then "| Cognitive Complexity | \(.value) | 🧠 |" 
+          elif .metric == "bugs" then "| Bugs                 | \(.value) | 🐛 |" 
+          elif .metric == "comment_lines_density" then "| Comment Density      | \(.value)% | 💬 |" 
+          else empty end' >> $GITHUB_STEP_SUMMARY
+        env:
+          RESPONSE: ${{ env.response }}
